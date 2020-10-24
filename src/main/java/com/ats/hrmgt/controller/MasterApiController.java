@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ats.hrmgt.model.Channel;
+import com.ats.hrmgt.model.Employee;
 import com.ats.hrmgt.model.Tags;
 import com.ats.hrmgt.model.TaskStatus;
+import com.ats.hrmgt.repository.ChannelRepository;
+import com.ats.hrmgt.repository.EmployeeRepository;
 import com.ats.hrmgt.repository.TagsRepository;
 import com.ats.hrmgt.repository.TaskStatusRepository;
 
@@ -23,10 +27,17 @@ public class MasterApiController {
 	@Autowired
 	TagsRepository tagsRepo;	
 	
+	
 	@Autowired
 	TaskStatusRepository taskStatusRepo;
 	
 	
+	@Autowired
+	ChannelRepository channelRepo;
+	
+	
+	@Autowired
+	EmployeeRepository empRepo;
 	
 	
 	
@@ -108,6 +119,76 @@ public class MasterApiController {
 		return BymdAccTypeIdResp;
 	}
 	
+	
+	
+	//Fetch All Records From Channeel Where del_status And is_active Is True
+	@RequestMapping(value="/getAllChannelList",method=RequestMethod.POST )
+	public @ResponseBody List<Channel> getAllChannelList(){
+		List<Channel> allChannelList=new ArrayList<Channel>();
+		
+		
+		try {
+			allChannelList=channelRepo.getAllChannelList();
+			System.err.println("Response Of /getAllChannelList is"+"\n"+allChannelList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			allChannelList=new ArrayList<Channel>();
+			System.err.println("Exception Occured!!! In Catch Block Of /getAllChannelList Mapping");
+			e.printStackTrace();
+		}
+		
+		
+		return allChannelList;
+		
+	}
+	
+	
+	
+	
+	
+	//To Fetch All Records From m_employee Where del_status And is_active Is True
+	@RequestMapping(value="/getAllEmployeeList",method=RequestMethod.POST)
+	public @ResponseBody List<Employee> getAllEmployeeList(){
+		List<Employee> AllEmployeeRsp=new ArrayList<Employee>();
+		
+		try {
+			AllEmployeeRsp=empRepo.getAllEmployeeList();
+			System.err.println("Response Of /getAllEmployeeList Is"+"\n"+AllEmployeeRsp);
+		} catch (Exception e) {
+			// TODO: handle exception
+			AllEmployeeRsp=new ArrayList<Employee>();
+			System.err.println("Exception Occured!!! In Catch Block Of /getAllEmployeeList Mapping");
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return AllEmployeeRsp;
+	}
+	
+	
+	
+	
+	//To Find Record Where md_acc_type_id Is Matched(Using FIND_IN_SET)
+	@RequestMapping(value="/findEmployeeBymdAccTypeId",method=RequestMethod.POST)
+	public @ResponseBody List<Employee>  findEmployeeBymdAccTypeId(@RequestParam String mdAccTypeId){
+		List<Employee> EmpListByAccTypeId=new ArrayList<Employee>();
+		
+		try {
+				EmpListByAccTypeId=empRepo.findEmployeeBymdAccTypeId(mdAccTypeId);
+				System.err.println("Response From /findEmployeeBymdAccTypeId Is"+"\n"+EmpListByAccTypeId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			EmpListByAccTypeId=new ArrayList<Employee>();
+			System.err.println("Exception Occuered!!! In Catch Block Of /findEmployeeBymdAccTypeId Mapping");
+			e.printStackTrace();
+		}
+		
+		
+		return EmpListByAccTypeId;
+		
+	}
 	
 	
 	
