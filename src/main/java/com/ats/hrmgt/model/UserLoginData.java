@@ -9,7 +9,7 @@ public class UserLoginData {
 	@Id
 	private int empId;
 	
-	private int mdAccTypeId;
+	private String mdAccTypeId;
 	
 	private String empDept;
 	
@@ -41,11 +41,12 @@ public class UserLoginData {
 		this.empId = empId;
 	}
 
-	public int getMdAccTypeId() {
+	
+	public String getMdAccTypeId() {
 		return mdAccTypeId;
 	}
 
-	public void setMdAccTypeId(int mdAccTypeId) {
+	public void setMdAccTypeId(String mdAccTypeId) {
 		this.mdAccTypeId = mdAccTypeId;
 	}
 
@@ -145,6 +146,7 @@ public class UserLoginData {
 				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", userTypeId=" + userTypeId
 				+ "]";
 	}
+
 
 
 	
