@@ -71,6 +71,12 @@ public class TaskDetailsEmpName {
 	
 	private String EmployeeName;
 
+	private int  sts;
+	private int  day;
+	private int  hour;
+	private int  minutes;
+	private String mdAccTypeText;
+	
 	public int getTaskId() {
 		return taskId;
 	}
@@ -335,6 +341,47 @@ public class TaskDetailsEmpName {
 		this.taskThoughQuestions = taskThoughQuestions;
 	}
 
+	public int getSts() {
+		return sts;
+	}
+
+	public void setSts(int sts) {
+		this.sts = sts;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getHour() {
+		return hour;
+	}
+
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+
+	public int getMinutes() {
+		return minutes;
+	}
+
+	public void setMinutes(int minutes) {
+		this.minutes = minutes;
+	}
+
+	public String getMdAccTypeText() {
+		return mdAccTypeText;
+	}
+
+	public void setMdAccTypeText(String mdAccTypeText) {
+		this.mdAccTypeText = mdAccTypeText;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "TaskDetailsEmpName [taskId=" + taskId + ", mdAccTypeId=" + mdAccTypeId + ", priKey=" + priKey
@@ -348,24 +395,9 @@ public class TaskDetailsEmpName {
 				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", delStatus=" + delStatus + ", isActive="
 				+ isActive + ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", allocatedById="
 				+ allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2="
-				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", EmployeeName=" + EmployeeName + "]";
+				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", EmployeeName=" + EmployeeName + ", sts="
+				+ sts + ", day=" + day + ", hour=" + hour + ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText
+				+ "]";
 	}
 
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
