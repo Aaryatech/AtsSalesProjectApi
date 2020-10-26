@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,11 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.Employee;
+import com.ats.hrmgt.model.Info;
 import com.ats.hrmgt.model.Tags;
+import com.ats.hrmgt.model.TaskDetails;
+import com.ats.hrmgt.model.TaskDetailsEmpName;
 import com.ats.hrmgt.model.TaskStatus;
 import com.ats.hrmgt.repository.ChannelRepository;
 import com.ats.hrmgt.repository.EmployeeRepository;
 import com.ats.hrmgt.repository.TagsRepository;
+import com.ats.hrmgt.repository.TaskDetailEmpNameRepo;
+import com.ats.hrmgt.repository.TaskDetailsRepository;
 import com.ats.hrmgt.repository.TaskStatusRepository;
 
 @RestController
@@ -38,6 +44,13 @@ public class MasterApiController {
 	
 	@Autowired
 	EmployeeRepository empRepo;
+	
+	
+	@Autowired
+	TaskDetailEmpNameRepo taskDetailEmpRepo;
+	
+	@Autowired
+	TaskDetailsRepository taskDetailsRepo;
 	
 	
 	
@@ -189,6 +202,120 @@ public class MasterApiController {
 		return EmpListByAccTypeId;
 		
 	}
+	
+	
+	
+	
+	//Fetch All Task Details With Employee Name As Extra Field From task_details
+	@RequestMapping(value="/getAllTaskWithEmpNAme",method=RequestMethod.POST)
+	public @ResponseBody List<TaskDetailsEmpName> getAllTaskWithEmpNAme(){
+		List<TaskDetailsEmpName> TaskDetailListResp=new ArrayList<TaskDetailsEmpName>();
+		
+		
+		try {
+			TaskDetailListResp=taskDetailEmpRepo.getAllTaskWithEmpNAme();
+			System.err.println("Response Of /getAllTaskWithEmpNAme Is"+"\n"+TaskDetailListResp);
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			TaskDetailListResp=new ArrayList<TaskDetailsEmpName>();
+			System.err.println("Exception Occuered!!! In Catch Block Of /getAllTaskWithEmpNAme Mapping");
+			e.printStackTrace();
+			
+		}
+		
+		return TaskDetailListResp;
+	}
+	
+	
+	
+	//To Fetch  Record Using empId From task_details With Employee Name
+	@RequestMapping(value="/getTaskDetailWithEmpNameByEmpid",method=RequestMethod.POST)
+	public @ResponseBody List<TaskDetailsEmpName> getTaskDetailWithEmpNameByEmpid(@RequestParam int empId ) {
+		List<TaskDetailsEmpName> taskDetailsResp=new  ArrayList<TaskDetailsEmpName>();
+		
+		try {
+			taskDetailsResp=taskDetailEmpRepo.getTaskDetailWithEmpNameByEmpid(empId);
+			System.err.println("Response From /getSingleTaskDetailWithEmpName Is"+"\t"+taskDetailsResp);
+		} catch (Exception e) {
+			taskDetailsResp=new ArrayList<TaskDetailsEmpName>();
+			System.err.println("Exception Occured!!! In Catch Block Of /getSingleTaskDetailWithEmpName Mapping");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		return taskDetailsResp;
+		
+	}
+	
+	
+	
+	//To Fetch Record Using TaskId From TaskDetails With Employee Name
+	@RequestMapping(value="/getTaskdetailsEmpnameByTaskId",method=RequestMethod.POST)
+	public @ResponseBody TaskDetailsEmpName   getTaskdetailsEmpnameByTaskId(@RequestParam int taskId) {
+		TaskDetailsEmpName taskDetails=new TaskDetailsEmpName();
+		try {
+			taskDetails=taskDetailEmpRepo.getTaskdetailsEmpnameByTaskId(taskId);
+			System.err.println("Response From /getTaskdetailsEmpnameByTaskId Is"+"\n"+taskDetails);
+		} catch (Exception e) {
+			// TODO: handle exception
+			taskDetails=new TaskDetailsEmpName();
+			System.err.println("Exception Occured!!! In Catch Block Of /getTaskdetailsEmpnameByTaskId Mapping ");
+			e.printStackTrace();
+		}
+		return taskDetails;
+	}
+	
+	
+	
+	//To Add New Record In task_details
+	@RequestMapping(value="/addNewTask",method=RequestMethod.POST)
+	public @ResponseBody TaskDetails addNewTask(@RequestBody TaskDetails taskDetails) {
+	 TaskDetails taskDetailsResp=new TaskDetails();
+		
+		try {
+			taskDetailsResp=taskDetailsRepo.save(taskDetails);
+			System.err.println("Saved Task Is ="+"\t"+taskDetailsResp);
+		} catch (Exception e) {
+			// TODO: handle exception
+			taskDetailsResp=new TaskDetails();
+			System.err.println("Exception Occured!!! In Catch Block Of /addNewTask Mapping" );
+			e.printStackTrace();
+		}
+		
+		return taskDetailsResp;
+		
+		
+	}
+	
+	
+	//To Delete Task From task_details Using task_id
+	@RequestMapping(value="/deleteTaskDetailsByTaskId",method=RequestMethod.POST)
+	public @ResponseBody Info deleteTaskDetailsByTaskId(@RequestParam int taskId) {
+		Info info=new Info();
+		int flag=0;
+		
+		try {
+			flag=taskDetailsRepo.deleteTaskDetailsByTaskId(taskId);
+			if(flag==0) {
+				info.setError(true);
+				info.setMsg("Unable To Delete Task");
+			}else {
+				info.setError(false);
+				info.setMsg("Task Deleted!!!");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			info.setError(true);
+			info.setMsg("Some Exception Occured Unable To Delete Task");
+			System.err.println("Exception Occured!!! In /deleteTaskDetailsByTaskId Mapping");
+			e.printStackTrace();
+		}
+		
+		return info;
+		
+	}
+	
+	
 	
 	
 	
