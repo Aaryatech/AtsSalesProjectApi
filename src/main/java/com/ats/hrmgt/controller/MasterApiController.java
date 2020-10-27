@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.Employee;
 import com.ats.hrmgt.model.Info;
-import com.ats.hrmgt.model.InquiryDetail;
-import com.ats.hrmgt.model.InquiryHeader;
+/*import com.ats.hrmgt.model.InquiryDetail;
+import com.ats.hrmgt.model.InquiryHeader;*/
 import com.ats.hrmgt.model.LmsDetail;
 import com.ats.hrmgt.model.LmsHeader;
 import com.ats.hrmgt.model.LmsHeaderWithNames;
@@ -25,8 +25,8 @@ import com.ats.hrmgt.model.TaskDetailsEmpName;
 import com.ats.hrmgt.model.TaskStatus;
 import com.ats.hrmgt.repository.ChannelRepository;
 import com.ats.hrmgt.repository.EmployeeRepository;
-import com.ats.hrmgt.repository.InquiryDetailRepository;
-import com.ats.hrmgt.repository.InquiryHeaderRepository;
+/*import com.ats.hrmgt.repository.InquiryDetailRepository;
+import com.ats.hrmgt.repository.InquiryHeaderRepository;*/
 import com.ats.hrmgt.repository.LmsDetailRepository;
 import com.ats.hrmgt.repository.LmsHeaderRepository;
 import com.ats.hrmgt.repository.LmsHeaderWithNamesRepository;
@@ -70,11 +70,11 @@ public class MasterApiController {
 	@Autowired
 	LmsDetailRepository lmsDetailRepo;
 	
-	@Autowired
+	/*@Autowired
 	InquiryHeaderRepository inquiryHeaderRepo;
 	
 	@Autowired
-	InquiryDetailRepository inquiryDetailRepo;
+	InquiryDetailRepository inquiryDetailRepo;*/
 	
 	//To Add Or Delete  LMS Header
 	@Autowired
@@ -449,7 +449,7 @@ public class MasterApiController {
 	
 	
 	//To Get ALl Inquiry Header
-	@RequestMapping(value="/getAllInquiryHeader",method=RequestMethod.POST)
+	/*@RequestMapping(value="/getAllInquiryHeader",method=RequestMethod.POST)
 	public @ResponseBody List<InquiryHeader> getAllInquiryHeader(){
 		List<InquiryHeader> AllInquiryHeaderList=new ArrayList<InquiryHeader>();
 		List<InquiryDetail> AllInquiryDetailList=new ArrayList<InquiryDetail>();
@@ -498,7 +498,7 @@ public class MasterApiController {
 		
 		return inqHeaderResp;
 		
-	}
+	}*/
 	
 	
 	

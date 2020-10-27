@@ -9,9 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.ats.hrmgt.model.TaskDetailsEmpName;
 
 public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName, Integer>{
-
-	
-	
+ 
 	//Fetch All Task Details With Employee Name As Extra Field From task_details
 	@Query(value="SELECT\n" + 
 			"    t.*,\n" + 
@@ -22,7 +20,7 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time) as day,\n" + 
 			"        TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24 AS hour,\n" + 
 			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,"
-			+ "acc.md_acc_type_text\n" + 
+			+ "acc.md_acc_type_text,(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed\n" + 
 			"FROM\n" + 
 			"    task_details t,\n" + 
 			"    m_employee emp,md_acc_type acc\n" + 
@@ -46,7 +44,8 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        end  as sts,\n" + 
 			"        TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time) as day,\n" + 
 			"        TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24 AS hour,\n" + 
-			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,acc.md_acc_type_text\n" + 
+			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,acc.md_acc_type_text,"
+			+ "(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed\n" + 
 			"    FROM\n" + 
 			"        task_details t,md_acc_type acc \n" + 
 			"    WHERE\n" + 
@@ -66,7 +65,8 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        end  as sts,\n" + 
 			"        TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time) as day,\n" + 
 			"        TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24 AS hour,\n" + 
-			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,acc.md_acc_type_text \n" + 
+			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,acc.md_acc_type_text,"
+			+ "(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed \n" + 
 			"FROM\n" + 
 			"    task_details t,\n" + 
 			"    m_employee emp,md_acc_type acc\n" + 

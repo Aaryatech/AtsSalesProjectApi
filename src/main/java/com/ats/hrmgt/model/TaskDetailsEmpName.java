@@ -69,13 +69,14 @@ public class TaskDetailsEmpName {
 	
 	private String exVar1,exVar2;
 	
-	private String EmployeeName;
+	private String employeeName;
 
 	private int  sts;
 	private int  day;
 	private int  hour;
 	private int  minutes;
 	private String mdAccTypeText;
+	private int  completed;
 	
 	public int getTaskId() {
 		return taskId;
@@ -292,13 +293,14 @@ public class TaskDetailsEmpName {
 	public void setExVar2(String exVar2) {
 		this.exVar2 = exVar2;
 	}
+ 
 
 	public String getEmployeeName() {
-		return EmployeeName;
+		return employeeName;
 	}
 
 	public void setEmployeeName(String employeeName) {
-		EmployeeName = employeeName;
+		this.employeeName = employeeName;
 	}
 
 	public int getAllocatedById() {
@@ -382,6 +384,14 @@ public class TaskDetailsEmpName {
 	}
 
 	
+	public int getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(int completed) {
+		this.completed = completed;
+	}
+
 	@Override
 	public String toString() {
 		return "TaskDetailsEmpName [taskId=" + taskId + ", mdAccTypeId=" + mdAccTypeId + ", priKey=" + priKey
@@ -395,9 +405,9 @@ public class TaskDetailsEmpName {
 				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", delStatus=" + delStatus + ", isActive="
 				+ isActive + ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", allocatedById="
 				+ allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2="
-				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", EmployeeName=" + EmployeeName + ", sts="
+				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", employeeName=" + employeeName + ", sts="
 				+ sts + ", day=" + day + ", hour=" + hour + ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText
-				+ "]";
+				+ ", completed=" + completed + "]";
 	}
 
 }
