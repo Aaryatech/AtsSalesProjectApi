@@ -174,7 +174,7 @@ public class MasterApiController {
 	
 	
 	//Fetch All Records From Channeel Where del_status And is_active Is True
-	@RequestMapping(value="/getAllChannelList",method=RequestMethod.POST )
+	@RequestMapping(value="/getAllChannelList",method=RequestMethod.GET )
 	public @ResponseBody List<Channel> getAllChannelList(){
 		List<Channel> allChannelList=new ArrayList<Channel>();
 		
@@ -432,18 +432,18 @@ public class MasterApiController {
 	
 	
 	//To Fetch List Of All LMS Header
-	@RequestMapping(value="/getListOfAllLmsHeader",method=RequestMethod.POST)
+	@RequestMapping(value="/getListOfAllLmsHeader",method=RequestMethod.GET)
 	public @ResponseBody List<LmsHeaderWithNames> getListOfAllLmsHeader(){
 		List<LmsHeaderWithNames> AllLmsHeaderList=new ArrayList<LmsHeaderWithNames>();
-		List<LmsDetail> lmsDEtailList=new ArrayList<LmsDetail>();
+		//List<LmsDetail> lmsDEtailList=new ArrayList<LmsDetail>();
 		
 		try {
 			AllLmsHeaderList=lmsHeaderWnamesRepo.getListOfAllLmsHeader();
-			for(LmsHeaderWithNames header : AllLmsHeaderList ) {
+			/*for(LmsHeaderWithNames header : AllLmsHeaderList ) {
 				
 				lmsDEtailList=lmsDetailRepo.getLmsDetailByLmsId(header.getLmsId());
 				header.setLmsDetailList(lmsDEtailList);
-			}
+			}*/
 			System.err.println("Response Of /getListOfAllLmsHeader Is"+"\t"+AllLmsHeaderList);
 		} catch (Exception e) {
 			// TODO: handle exception

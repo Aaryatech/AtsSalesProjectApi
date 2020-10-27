@@ -17,17 +17,16 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 	//Fetch Lms Header By lms_is And del_status ,is_active is True
 	@Query(value="   SELECT\n" + 
 			"        lms_header.*,\n" + 
-			"        md_acc_type.md_acc_type_short_name AS Account_Type,\n" + 
-			"        m_channel.m_channel_name AS Channel_Name,\n" + 
+			"        '' AS account_type,\n" + 
+			"        m_channel.m_channel_name AS channel_name,\n" + 
 			"        (SELECT\n" + 
 			"            GROUP_CONCAT(m_tags.m_tag_name)     \n" + 
 			"        FROM\n" + 
 			"            m_tags     \n" + 
 			"        WHERE\n" + 
-			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS Tag_names        \n" + 
+			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names        \n" + 
 			"    FROM\n" + 
 			"        lms_header,\n" + 
-			"        md_acc_type,\n" + 
 			"        m_channel        \n" + 
 			"    WHERE\n" + 
 			"        lms_header.del_status=1         \n" + 
@@ -51,14 +50,14 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 	//Te Fetch List Of All LMS Header
 	@Query(value="SELECT\n" + 
 			"    lms_header.*,\n" + 
-			"    md_acc_type.md_acc_type_short_name AS Account_Type,\n" + 
-			"    m_channel.m_channel_name AS Channel_Name,\n" + 
+			"   '' AS account_type,\n" + 
+			"    m_channel.m_channel_name AS channel_name,\n" + 
 			"    (SELECT\n" + 
 			"        GROUP_CONCAT(m_tags.m_tag_name)\n" + 
 			"    FROM\n" + 
 			"        m_tags\n" + 
 			"    WHERE\n" + 
-			"       FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS Tag_names\n" + 
+			"       FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names\n" + 
 			"       FROM\n" + 
 			"       lms_header,\n" + 
 			"       md_acc_type,\n" + 

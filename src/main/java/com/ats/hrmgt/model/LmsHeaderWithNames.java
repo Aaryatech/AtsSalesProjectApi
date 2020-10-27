@@ -44,13 +44,13 @@ public class LmsHeaderWithNames {
 	
 	private String accCompanyLandline;
 	
-	private boolean accStatus;
+	private int accStatus;
 	
 	private String accRemark;
 	
-	private boolean delStatus;
+	private int delStatus;
 	
-	private boolean isActive;
+	private int isActive;
 	
 	private int makerUserId;
 	
@@ -225,12 +225,12 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public boolean isAccStatus() {
+	public int isAccStatus() {
 		return accStatus;
 	}
 
 
-	public void setAccStatus(boolean accStatus) {
+	public void setAccStatus(int accStatus) {
 		this.accStatus = accStatus;
 	}
 
@@ -245,22 +245,22 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public boolean isDelStatus() {
+	public int isDelStatus() {
 		return delStatus;
 	}
 
 
-	public void setDelStatus(boolean delStatus) {
+	public void setDelStatus(int delStatus) {
 		this.delStatus = delStatus;
 	}
 
 
-	public boolean isActive() {
+	public int isActive() {
 		return isActive;
 	}
 
 
-	public void setActive(boolean isActive) {
+	public void setActive(int isActive) {
 		this.isActive = isActive;
 	}
 

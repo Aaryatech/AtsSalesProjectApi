@@ -16,9 +16,9 @@ public class Channel {
 	
 	private String mChannelDesc;
 	
-	private boolean delStatus;
+	private int delStatus;
 	
-	private boolean isActive;
+	private int isActive;
 	
 	private int makerUserId;
 	
@@ -52,19 +52,19 @@ public class Channel {
 		this.mChannelDesc = mChannelDesc;
 	}
 
-	public boolean isDelStatus() {
+	public int isDelStatus() {
 		return delStatus;
 	}
 
-	public void setDelStatus(boolean delStatus) {
+	public void setDelStatus(int delStatus) {
 		this.delStatus = delStatus;
 	}
 
-	public boolean isActive() {
+	public int isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(int isActive) {
 		this.isActive = isActive;
 	}
 
