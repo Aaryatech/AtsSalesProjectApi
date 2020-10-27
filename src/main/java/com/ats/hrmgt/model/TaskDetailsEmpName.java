@@ -1,83 +1,86 @@
 package com.ats.hrmgt.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class TaskDetailsEmpName {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int taskId;
-	
+
 	private int mdAccTypeId;
-	
+
 	private int priKey;
-	
+
 	private String taskTittle;
-	
+
 	private int taskTypeId;
-	
+
 	private String taskRepType;
-	
+
 	private String taskEntryType;
-	
+
 	private String taskScheDate;
-	
-	private String taskScheTime;
-	
+
+	private Date taskScheTime;
+
 	private String taskAllotedTo;
-	
+
 	private int taskAllottedBy;
-	
+
 	private String taskAllotmentInstructions;
-	
+
 	private String taskClientDiscussion;
-	
-	
+
 	private String taskClientProfiling;
-	
+
 	private String taskThoughQuestions;
-	
+
 	private String taskWhatWentWrong;
-	
-	private boolean thisTaskStatus;
-	
-	private boolean  taskFinalStatus;
-	
-	private boolean taskPriority;
-	
+
+	private int thisTaskStatus;
+
+	private int taskFinalStatus;
+
+	private int taskPriority;
+
 	private int taskPts;
-	
+
 	private String taskDoneDate;
-	
-	private boolean delStatus;
-	
-	private boolean isActive;
-	
+
+	private int delStatus;
+
+	private int isActive;
+
 	private int makerUserId;
-	
+
 	private String makerDatetime;
-	
+
 	private int allocatedById;
-	
+
 	private String allocatedDatetime;
-	
-	private int  exInt1,exInt2;
-	
-	private String exVar1,exVar2;
-	
+
+	private int exInt1, exInt2;
+
+	private String exVar1, exVar2;
+
 	private String employeeName;
 
-	private int  sts;
-	private int  day;
-	private int  hour;
-	private int  minutes;
+	private int sts;
+	private int day;
+	private int hour;
+	private int minutes;
 	private String mdAccTypeText;
-	private int  completed;
-	
+	private int completed;
+
 	public int getTaskId() {
 		return taskId;
 	}
@@ -93,7 +96,6 @@ public class TaskDetailsEmpName {
 	public void setMdAccTypeId(int mdAccTypeId) {
 		this.mdAccTypeId = mdAccTypeId;
 	}
-
 
 	public String getTaskTittle() {
 		return taskTittle;
@@ -135,11 +137,12 @@ public class TaskDetailsEmpName {
 		this.taskScheDate = taskScheDate;
 	}
 
-	public String getTaskScheTime() {
+	@JsonFormat(locale = "Locale.ENGLISH", timezone = "Asia/Kolkata", pattern = "dd-MM-yyyy hh:mm:ss a")
+	public Date getTaskScheTime() {
 		return taskScheTime;
 	}
 
-	public void setTaskScheTime(String taskScheTime) {
+	public void setTaskScheTime(Date taskScheTime) {
 		this.taskScheTime = taskScheTime;
 	}
 
@@ -150,10 +153,6 @@ public class TaskDetailsEmpName {
 	public void setTaskAllotedTo(String taskAllotedTo) {
 		this.taskAllotedTo = taskAllotedTo;
 	}
-
-	
-
-	
 
 	public String getTaskClientDiscussion() {
 		return taskClientDiscussion;
@@ -171,7 +170,6 @@ public class TaskDetailsEmpName {
 		this.taskClientProfiling = taskClientProfiling;
 	}
 
-
 	public String getTaskWhatWentWrong() {
 		return taskWhatWentWrong;
 	}
@@ -180,27 +178,27 @@ public class TaskDetailsEmpName {
 		this.taskWhatWentWrong = taskWhatWentWrong;
 	}
 
-	public boolean isThisTaskStatus() {
+	public int isThisTaskStatus() {
 		return thisTaskStatus;
 	}
 
-	public void setThisTaskStatus(boolean thisTaskStatus) {
+	public void setThisTaskStatus(int thisTaskStatus) {
 		this.thisTaskStatus = thisTaskStatus;
 	}
 
-	public boolean isTaskFinalStatus() {
+	public int isTaskFinalStatus() {
 		return taskFinalStatus;
 	}
 
-	public void setTaskFinalStatus(boolean taskFinalStatus) {
+	public void setTaskFinalStatus(int taskFinalStatus) {
 		this.taskFinalStatus = taskFinalStatus;
 	}
 
-	public boolean isTaskPriority() {
+	public int isTaskPriority() {
 		return taskPriority;
 	}
 
-	public void setTaskPriority(boolean taskPriority) {
+	public void setTaskPriority(int taskPriority) {
 		this.taskPriority = taskPriority;
 	}
 
@@ -220,19 +218,19 @@ public class TaskDetailsEmpName {
 		this.taskDoneDate = taskDoneDate;
 	}
 
-	public boolean isDelStatus() {
+	public int isDelStatus() {
 		return delStatus;
 	}
 
-	public void setDelStatus(boolean delStatus) {
+	public void setDelStatus(int delStatus) {
 		this.delStatus = delStatus;
 	}
 
-	public boolean isActive() {
+	public int isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(int isActive) {
 		this.isActive = isActive;
 	}
 
@@ -251,8 +249,6 @@ public class TaskDetailsEmpName {
 	public void setMakerDatetime(String makerDatetime) {
 		this.makerDatetime = makerDatetime;
 	}
-
-
 
 	public String getAllocatedDatetime() {
 		return allocatedDatetime;
@@ -293,7 +289,6 @@ public class TaskDetailsEmpName {
 	public void setExVar2(String exVar2) {
 		this.exVar2 = exVar2;
 	}
- 
 
 	public String getEmployeeName() {
 		return employeeName;
@@ -383,7 +378,6 @@ public class TaskDetailsEmpName {
 		this.mdAccTypeText = mdAccTypeText;
 	}
 
-	
 	public int getCompleted() {
 		return completed;
 	}
