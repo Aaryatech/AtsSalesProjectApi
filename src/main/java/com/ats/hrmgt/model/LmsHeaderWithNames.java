@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
-
+//TO Fetch All Data With Account Type Name And Channel Name And Names Of Tags
 @Entity
 public class LmsHeaderWithNames {
 

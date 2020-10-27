@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.Employee;
 import com.ats.hrmgt.model.Info;
-/*import com.ats.hrmgt.model.InquiryDetail;
-import com.ats.hrmgt.model.InquiryHeader;*/
+import com.ats.hrmgt.model.InquiryDetail;
+import com.ats.hrmgt.model.InquiryHeader;
+import com.ats.hrmgt.model.InquiryHeaderWithNames;
 import com.ats.hrmgt.model.LmsDetail;
 import com.ats.hrmgt.model.LmsHeader;
 import com.ats.hrmgt.model.LmsHeaderWithNames;
@@ -25,8 +26,9 @@ import com.ats.hrmgt.model.TaskDetailsEmpName;
 import com.ats.hrmgt.model.TaskStatus;
 import com.ats.hrmgt.repository.ChannelRepository;
 import com.ats.hrmgt.repository.EmployeeRepository;
-/*import com.ats.hrmgt.repository.InquiryDetailRepository;
-import com.ats.hrmgt.repository.InquiryHeaderRepository;*/
+import com.ats.hrmgt.repository.InquiryDetailRepository;
+import com.ats.hrmgt.repository.InquiryHeaderRepository;
+import com.ats.hrmgt.repository.InquiryHeaderWithNamesRepository;
 import com.ats.hrmgt.repository.LmsDetailRepository;
 import com.ats.hrmgt.repository.LmsHeaderRepository;
 import com.ats.hrmgt.repository.LmsHeaderWithNamesRepository;
@@ -70,11 +72,19 @@ public class MasterApiController {
 	@Autowired
 	LmsDetailRepository lmsDetailRepo;
 	
-	/*@Autowired
+	
+	//To Save And Delete Inquiry Header 
+	@Autowired
 	InquiryHeaderRepository inquiryHeaderRepo;
 	
+	
+	//To Fetch Data From inquiry_header With Channel Name And Tag Names
 	@Autowired
-	InquiryDetailRepository inquiryDetailRepo;*/
+	InquiryHeaderWithNamesRepository inquiryHeadWithNames;
+	
+	
+	@Autowired
+	InquiryDetailRepository inquiryDetailRepo;
 	
 	//To Add Or Delete  LMS Header
 	@Autowired
@@ -448,32 +458,33 @@ public class MasterApiController {
 	
 	
 	
-	//To Get ALl Inquiry Header
-	/*@RequestMapping(value="/getAllInquiryHeader",method=RequestMethod.POST)
-	public @ResponseBody List<InquiryHeader> getAllInquiryHeader(){
-		List<InquiryHeader> AllInquiryHeaderList=new ArrayList<InquiryHeader>();
-		List<InquiryDetail> AllInquiryDetailList=new ArrayList<InquiryDetail>();
-		
-		
-		try {
-			
-			AllInquiryHeaderList=inquiryHeaderRepo.getAllInquiryHeaderList();
-			for(InquiryHeader header :  AllInquiryHeaderList) {
-				AllInquiryDetailList=inquiryDetailRepo.getInqDeatilById(header.getInqId());
-				header.setInqDetailList(AllInquiryDetailList);
-			}
-				System.err.println("response Of /getAllInquiryHeader"+"\n"+AllInquiryHeaderList);
-		} catch (Exception e) {
-			// TODO: handle exception
-			AllInquiryHeaderList=new ArrayList<InquiryHeader>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getAllInquiryHeader Mapping");
-			e.printStackTrace();
-			
-		}
-		
-		return AllInquiryHeaderList;
-		
-	}
+	/*
+	 * //To Get ALl Inquiry Header Without Names
+	 * 
+	 * @RequestMapping(value="/getAllInquiryHeader",method=RequestMethod.POST)
+	 * public @ResponseBody List<InquiryHeader> getAllInquiryHeader(){
+	 * List<InquiryHeader> AllInquiryHeaderList=new ArrayList<InquiryHeader>();
+	 * List<InquiryDetail> AllInquiryDetailList=new ArrayList<InquiryDetail>();
+	 * 
+	 * 
+	 * try {
+	 * 
+	 * AllInquiryHeaderList=inquiryHeaderRepo.getAllInquiryHeaderList();
+	 * for(InquiryHeader header : AllInquiryHeaderList) {
+	 * AllInquiryDetailList=inquiryDetailRepo.getInqDeatilById(header.getInqId());
+	 * header.setInqDetailList(AllInquiryDetailList); }
+	 * System.err.println("response Of /getAllInquiryHeader"+"\n"+
+	 * AllInquiryHeaderList); } catch (Exception e) { // TODO: handle exception
+	 * AllInquiryHeaderList=new ArrayList<InquiryHeader>(); System.err.
+	 * println("Exception Occured!!! In Catch Block Of /getAllInquiryHeader Mapping"
+	 * ); e.printStackTrace();
+	 * 
+	 * }
+	 * 
+	 * return AllInquiryHeaderList;
+	 * 
+	 * }
+	 */
 	
 	
 	//For Add New Inquiry Header
@@ -498,11 +509,90 @@ public class MasterApiController {
 		
 		return inqHeaderResp;
 		
-	}*/
+	}
+	
+	//To Delete Inquiry Header
+	@RequestMapping(value="/deleteInquiryHeaderByInqId",method=RequestMethod.POST)
+	public @ResponseBody Info deleteInquiryHeaderByInqId(@RequestParam int inqId) {
+		
+		Info info=new Info();
+		int flag=0;
+		try {
+			flag=inquiryHeaderRepo.deleteInquiryHeaderByInqId(inqId);
+			if(flag==0) {
+				info.setError(true);
+				info.setMsg("Unable To Delete Inquiry Header!!!");
+			}else {
+				info.setError(false);
+				info.setMsg("Inquiry Header Deleted SuccessFully!!!");
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			info.setError(true);
+			info.setMsg("Exception Occuered Unable To Delete Inquiry Header");
+			System.err.println("Exception occuered!!! In Catch Block Of /deleteInquiryHeaderByInqId Mapping");
+			e.printStackTrace();
+		}
+		
+		return info;
+		
+	}
 	
 	
 	
+	//To Fetch All Records From Inquiry Header With Channel Name And Tag Names 
+	@RequestMapping(value="/getAllInquiryHeaderWithName",method=RequestMethod.GET)
+	public @ResponseBody List<InquiryHeaderWithNames> getAllInquiryHeaderWithName(){
+		List<InquiryHeaderWithNames> inqHeadResp=new ArrayList<InquiryHeaderWithNames>();
+		List<InquiryDetail> inqDetailResp=new ArrayList<InquiryDetail>();
+		try {
+			
+			inqHeadResp=inquiryHeadWithNames.getAllInquiryHeaderWithName();
+			for(InquiryHeaderWithNames header : inqHeadResp ) {
+				inqDetailResp=inquiryDetailRepo.getInqDeatilById(header.getInqId());
+				header.setInqDetailList(inqDetailResp);
+				
+			}
+			
+			System.err.println("Response From /getAllInquiryHeaderWithName ="+"\t"+inqHeadResp);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			inqHeadResp=new ArrayList<InquiryHeaderWithNames>();
+			System.err.println("Exception Occuered!!! In Catcg Of /getAllInquiryHeaderWithName Mapping");
+			e.printStackTrace();
+		}
+		
+		return inqHeadResp;
+		
+	}
 	
+	
+	//To Fetch Single Inquiry Header With Channel Name And Tag Names Using inq_id
+	@RequestMapping(value="/getInqHeaderWithNameById",method=RequestMethod.POST)
+	public @ResponseBody InquiryHeaderWithNames getInqHeaderWithNameById(@RequestParam int inqId) {
+		InquiryHeaderWithNames inqHeadResp=new InquiryHeaderWithNames();
+		List<InquiryDetail> inqDetailList=new ArrayList<InquiryDetail>();
+		
+		try {
+			inqDetailList=inquiryDetailRepo.getInqDeatilById(inqId);
+			inqHeadResp=inquiryHeadWithNames.getInqHeaderWithNameById(inqId);
+			inqHeadResp.setInqDetailList(inqDetailList);
+			System.err.println("Response From /getInqHeaderWithNameById ="+"\t"+inqHeadResp);
+		} catch (Exception e) {
+			// TODO: handle exception
+			inqHeadResp=new InquiryHeaderWithNames();
+			System.err.println("Exception Occured!!! In /getInqHeaderWithNameById Mapping");
+			e.printStackTrace();
+		}
+		
+		return inqHeadResp;
+		
+		
+	}
 	
 	
 }
