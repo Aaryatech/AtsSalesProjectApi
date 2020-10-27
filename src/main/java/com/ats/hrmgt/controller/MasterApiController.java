@@ -14,12 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.Employee;
 import com.ats.hrmgt.model.Info;
+import com.ats.hrmgt.model.InquiryDetail;
+import com.ats.hrmgt.model.InquiryHeader;
+import com.ats.hrmgt.model.LmsDetail;
+import com.ats.hrmgt.model.LmsHeader;
+import com.ats.hrmgt.model.LmsHeaderWithNames;
 import com.ats.hrmgt.model.Tags;
 import com.ats.hrmgt.model.TaskDetails;
 import com.ats.hrmgt.model.TaskDetailsEmpName;
 import com.ats.hrmgt.model.TaskStatus;
 import com.ats.hrmgt.repository.ChannelRepository;
 import com.ats.hrmgt.repository.EmployeeRepository;
+import com.ats.hrmgt.repository.InquiryDetailRepository;
+import com.ats.hrmgt.repository.InquiryHeaderRepository;
+import com.ats.hrmgt.repository.LmsDetailRepository;
+import com.ats.hrmgt.repository.LmsHeaderRepository;
+import com.ats.hrmgt.repository.LmsHeaderWithNamesRepository;
 import com.ats.hrmgt.repository.TagsRepository;
 import com.ats.hrmgt.repository.TaskDetailEmpNameRepo;
 import com.ats.hrmgt.repository.TaskDetailsRepository;
@@ -51,6 +61,25 @@ public class MasterApiController {
 	
 	@Autowired
 	TaskDetailsRepository taskDetailsRepo;
+	
+	
+	//To Fetch Records With Account Type Names,Tag Names And Channel Names
+	@Autowired
+	LmsHeaderWithNamesRepository lmsHeaderWnamesRepo;
+	
+	@Autowired
+	LmsDetailRepository lmsDetailRepo;
+	
+	@Autowired
+	InquiryHeaderRepository inquiryHeaderRepo;
+	
+	@Autowired
+	InquiryDetailRepository inquiryDetailRepo;
+	
+	//To Add Or Delete  LMS Header
+	@Autowired
+	LmsHeaderRepository lmsHeadRepo;
+	
 	
 	
 	
@@ -314,6 +343,163 @@ public class MasterApiController {
 		return info;
 		
 	}
+	
+	
+	
+	
+	//Fetch LMS HEADER And DETAIL By lmsId
+	@RequestMapping(value="/getLmsHeader",method=RequestMethod.POST)
+	public @ResponseBody LmsHeaderWithNames getLmsHeader(@RequestParam int lmsId) {
+		LmsHeaderWithNames lmsHeaderResp=new LmsHeaderWithNames();
+		List<LmsDetail> lmsDetailList=new ArrayList<LmsDetail>();
+		try {
+			lmsHeaderResp=lmsHeaderWnamesRepo.getLmsHeaderByLmsId(lmsId);
+			lmsDetailList=lmsDetailRepo.getLmsDetailByLmsId(lmsId);
+			lmsHeaderResp.setLmsDetailList(lmsDetailList);
+			System.err.println("Lms Header  IS ="+"\t"+lmsHeaderResp);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			lmsHeaderResp=new LmsHeaderWithNames();
+			System.err.println("Exception Occured!!! In Catch Bolock /getLmsHeader mapping");
+			e.printStackTrace();
+		}
+		
+		
+		return lmsHeaderResp;
+		
+	}
+	
+	
+	//To Add New LMS Header With Lms Detail List
+	@RequestMapping(value="/addNewLmsHeader",method=RequestMethod.POST)
+	public @ResponseBody  LmsHeader addNewLmsHeader(@RequestBody LmsHeader lmsHeader) {
+		LmsHeader lmsHeadResp=new LmsHeader();
+		List<LmsDetail> lmsDetailresp=new ArrayList<LmsDetail>();
+		try {
+			
+			
+			lmsDetailresp=	lmsDetailRepo.saveAll(lmsHeader.getLmsDetailList());
+			lmsHeadResp=lmsHeadRepo.save(lmsHeader);
+			System.err.println("Added LMS Header Is="+"\t"+lmsHeadResp);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			lmsHeadResp=new LmsHeader();
+			lmsDetailresp=new ArrayList<LmsDetail>();
+			System.err.println("Exception Occuered!!! In Catch Block /addNewLmsHeader Mapping");
+			e.printStackTrace();
+		}
+		return lmsHeadResp;
+	}
+	
+	
+	//To Delete Lms Header Using Lms ID
+	@RequestMapping(value="/deleteLmsHeader",method=RequestMethod.POST)
+	public @ResponseBody Info	deleteLmsHeader(@RequestParam int lmsId){
+		Info info=new Info();
+		int flag=0;
+		try {
+		flag=lmsHeadRepo.deleteLmsHeader(lmsId);
+		if(flag==0) {
+			info.setError(true);
+			info.setMsg("Unable To Delete Header");
+		}else {
+			info.setError(false);
+			info.setMsg("Lms Header Deleted Successfully");
+		}
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			info.setError(false);
+			info.setMsg("Exception Occured Unable To Delete Lms Header");
+		}
+	
+		return info;
+	}
+	
+	
+	//To Fetch List Of All LMS Header
+	@RequestMapping(value="/getListOfAllLmsHeader",method=RequestMethod.POST)
+	public @ResponseBody List<LmsHeaderWithNames> getListOfAllLmsHeader(){
+		List<LmsHeaderWithNames> AllLmsHeaderList=new ArrayList<LmsHeaderWithNames>();
+		List<LmsDetail> lmsDEtailList=new ArrayList<LmsDetail>();
+		
+		try {
+			AllLmsHeaderList=lmsHeaderWnamesRepo.getListOfAllLmsHeader();
+			for(LmsHeaderWithNames header : AllLmsHeaderList ) {
+				
+				lmsDEtailList=lmsDetailRepo.getLmsDetailByLmsId(header.getLmsId());
+				header.setLmsDetailList(lmsDEtailList);
+			}
+			System.err.println("Response Of /getListOfAllLmsHeader Is"+"\t"+AllLmsHeaderList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			AllLmsHeaderList=new ArrayList<LmsHeaderWithNames>();
+			System.err.println("Exception Occuered!!! In Catch Block /getListOfAllLmsHeader Mapping");
+			e.printStackTrace();
+		}
+		
+		return AllLmsHeaderList;
+		
+	}
+	
+	
+	
+	//To Get ALl Inquiry Header
+	@RequestMapping(value="/getAllInquiryHeader",method=RequestMethod.POST)
+	public @ResponseBody List<InquiryHeader> getAllInquiryHeader(){
+		List<InquiryHeader> AllInquiryHeaderList=new ArrayList<InquiryHeader>();
+		List<InquiryDetail> AllInquiryDetailList=new ArrayList<InquiryDetail>();
+		
+		
+		try {
+			
+			AllInquiryHeaderList=inquiryHeaderRepo.getAllInquiryHeaderList();
+			for(InquiryHeader header :  AllInquiryHeaderList) {
+				AllInquiryDetailList=inquiryDetailRepo.getInqDeatilById(header.getInqId());
+				header.setInqDetailList(AllInquiryDetailList);
+			}
+				System.err.println("response Of /getAllInquiryHeader"+"\n"+AllInquiryHeaderList);
+		} catch (Exception e) {
+			// TODO: handle exception
+			AllInquiryHeaderList=new ArrayList<InquiryHeader>();
+			System.err.println("Exception Occured!!! In Catch Block Of /getAllInquiryHeader Mapping");
+			e.printStackTrace();
+			
+		}
+		
+		return AllInquiryHeaderList;
+		
+	}
+	
+	
+	//For Add New Inquiry Header
+	@RequestMapping(value="/addNewInquiryHeader",method=RequestMethod.POST)
+	public @ResponseBody InquiryHeader addNewInquiryHeader(@RequestBody InquiryHeader inquiryHead ) {
+		InquiryHeader inqHeaderResp=new InquiryHeader();
+		List<InquiryDetail> inqDetailList=new ArrayList<InquiryDetail>();
+		try {
+			
+			inqDetailList=inquiryDetailRepo.saveAll(inquiryHead.getInqDetailList());
+			inqHeaderResp=inquiryHeaderRepo.save(inquiryHead);
+			System.err.println("Saved Headr Is ="+"\t"+inqHeaderResp);
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			inqHeaderResp=new InquiryHeader();
+			System.err.println("Exception Occur!!! In Catch Block Of /addNewInquiryHeader Mapping");
+			e.printStackTrace();
+		}
+		
+		return inqHeaderResp;
+		
+	}
+	
 	
 	
 	
