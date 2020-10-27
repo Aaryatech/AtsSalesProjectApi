@@ -56,14 +56,7 @@ public class TaskDetails {
 	
 	private int taskDoneBy;
 	
-	public int getTaskDoneBy() {
-		return taskDoneBy;
-	}
-
-	public void setTaskDoneBy(int taskDoneBy) {
-		this.taskDoneBy = taskDoneBy;
-	}
-
+	
 	private boolean delStatus;
 	
 	private boolean isActive;
@@ -79,6 +72,18 @@ public class TaskDetails {
 	private int  exInt1,exInt2;
 	
 	private String exVar1,exVar2;
+	
+	
+	
+	
+	public int getTaskDoneBy() {
+		return taskDoneBy;
+	}
+
+	public void setTaskDoneBy(int taskDoneBy) {
+		this.taskDoneBy = taskDoneBy;
+	}
+
 
 	public int getTaskId() {
 		return taskId;
@@ -344,6 +349,7 @@ public class TaskDetails {
 				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
 				+ exVar2 + "]";
 	}
+
 
 
 
