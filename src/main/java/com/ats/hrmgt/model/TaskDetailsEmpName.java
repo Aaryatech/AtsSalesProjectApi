@@ -55,6 +55,41 @@ public class TaskDetailsEmpName {
 	private int taskPts;
 
 	private String taskDoneDate;
+	
+	private int taskDoneBy;
+	
+
+	public int getTaskDoneBy() {
+		return taskDoneBy;
+	}
+
+	public void setTaskDoneBy(int taskDoneBy) {
+		this.taskDoneBy = taskDoneBy;
+	}
+
+	public int getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+
+	public int getThisTaskStatus() {
+		return thisTaskStatus;
+	}
+
+	public int getTaskFinalStatus() {
+		return taskFinalStatus;
+	}
+
+	public int getTaskPriority() {
+		return taskPriority;
+	}
+
+	public int getDelStatus() {
+		return delStatus;
+	}
 
 	private int delStatus;
 
@@ -396,12 +431,14 @@ public class TaskDetailsEmpName {
 				+ taskClientDiscussion + ", taskClientProfiling=" + taskClientProfiling + ", taskThoughQuestions="
 				+ taskThoughQuestions + ", taskWhatWentWrong=" + taskWhatWentWrong + ", thisTaskStatus="
 				+ thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority=" + taskPriority
-				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", delStatus=" + delStatus + ", isActive="
-				+ isActive + ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", allocatedById="
-				+ allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2="
-				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", employeeName=" + employeeName + ", sts="
-				+ sts + ", day=" + day + ", hour=" + hour + ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText
-				+ ", completed=" + completed + "]";
+				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy=" + taskDoneBy
+				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ ", makerDatetime=" + makerDatetime + ", allocatedById=" + allocatedById + ", allocatedDatetime="
+				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
+				+ exVar2 + ", employeeName=" + employeeName + ", sts=" + sts + ", day=" + day + ", hour=" + hour
+				+ ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText + ", completed=" + completed + "]";
 	}
+
+
 
 }

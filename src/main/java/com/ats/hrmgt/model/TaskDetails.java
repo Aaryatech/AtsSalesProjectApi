@@ -54,6 +54,16 @@ public class TaskDetails {
 	
 	private String taskDoneDate;
 	
+	private int taskDoneBy;
+	
+	public int getTaskDoneBy() {
+		return taskDoneBy;
+	}
+
+	public void setTaskDoneBy(int taskDoneBy) {
+		this.taskDoneBy = taskDoneBy;
+	}
+
 	private boolean delStatus;
 	
 	private boolean isActive;
@@ -328,11 +338,14 @@ public class TaskDetails {
 				+ taskClientDiscussion + ", taskClientProfiling=" + taskClientProfiling + ", taskThoughQuestions="
 				+ taskThoughQuestions + ", taskWhatWentWrong=" + taskWhatWentWrong + ", thisTaskStatus="
 				+ thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority=" + taskPriority
-				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", delStatus=" + delStatus + ", isActive="
-				+ isActive + ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", allocatedById="
-				+ allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2="
-				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
+				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy=" + taskDoneBy
+				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ ", makerDatetime=" + makerDatetime + ", allocatedById=" + allocatedById + ", allocatedDatetime="
+				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
+				+ exVar2 + "]";
 	}
+
+
 
 	
 	
