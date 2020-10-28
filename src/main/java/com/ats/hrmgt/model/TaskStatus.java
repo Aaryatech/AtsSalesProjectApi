@@ -15,7 +15,7 @@ public class TaskStatus {
 	
 	private int mdAccTypeId;
 	
-	@Column(name="m_task_ status_sequence")
+	@Column(name="m_task_status_sequence")
 	private int mTaskStatusSequence;
 	
 	private String mTaskStatusName;

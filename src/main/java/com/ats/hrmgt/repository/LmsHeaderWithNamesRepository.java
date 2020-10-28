@@ -31,7 +31,7 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 			"    WHERE\n" + 
 			"        lms_header.del_status=1         \n" + 
 			"        AND         lms_header.is_active=1        \n" + 
-			"        AND        lms_header.md_acc_type_id=md_acc_type.md_acc_type_id        \n" + 
+			/*"        AND        lms_header.md_acc_type_id=md_acc_type.md_acc_type_id\n" +*/ 
 			"        AND        lms_header.channel_id=m_channel.m_channel_id    \n" + 
 			"        AND 		lms_header.lms_id=:lmsId\n" + 
 			"    GROUP BY\n" + 

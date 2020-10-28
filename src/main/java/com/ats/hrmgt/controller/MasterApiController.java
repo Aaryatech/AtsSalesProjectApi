@@ -151,9 +151,31 @@ public class MasterApiController {
 	
 	
 	
+	//To Fetch Record Where ms_acc_type_id And m_task_status_sequence Matched
+	@RequestMapping(value="/getTaskStatusByAccTypeIdAndSequnce",method=RequestMethod.POST)
+	public @ResponseBody List<TaskStatus> getTaskStatusByAccTypeIdAndSequnce(@RequestParam int mdAccTypeId,
+																			@RequestParam int statusSequence){
+		List<TaskStatus> taskStatuslist=new ArrayList<TaskStatus>();
+		
+		try {
+			taskStatuslist=taskStatusRepo.getTaskStatusByAccTypeIdAndSequnce(mdAccTypeId, statusSequence);
+			System.err.println("Responce Of /statusSequence ="+"\n"+taskStatuslist);
+		} catch (Exception e) {
+			taskStatuslist =new ArrayList<TaskStatus>();
+			System.err.println("Exceotion Occured!!! In Catch Block Of /statusSequence Mapping");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		return taskStatuslist;
+		
+	}
+	
+	
+	
 	//To Fetch Records From Task Status By  m_acc_type_id Where del_status And is_active Status is True
 	@RequestMapping(value="/getAllTaskStatusBymdAccTypeId",method=RequestMethod.POST)
-	public @ResponseBody List<TaskStatus> getAllTaskStatusBymdAccTypeId(@RequestParam int mdAccTypeId){
+	public @ResponseBody List<TaskStatus> getAllTaskStatusBymdAccTypeId(@RequestParam List<Integer> mdAccTypeId){
 		List<TaskStatus> BymdAccTypeIdResp=new ArrayList<TaskStatus>();
 		//System.err.println("m_acc_type_id="+mAccTypeId);
 		try {
@@ -388,10 +410,13 @@ public class MasterApiController {
 		LmsHeader lmsHeadResp=new LmsHeader();
 		List<LmsDetail> lmsDetailresp=new ArrayList<LmsDetail>();
 		try {
-			
-			
-			lmsDetailresp=	lmsDetailRepo.saveAll(lmsHeader.getLmsDetailList());
 			lmsHeadResp=lmsHeadRepo.save(lmsHeader);
+			lmsDetailresp=lmsHeader.getLmsDetailList();
+			for(LmsDetail detail :lmsDetailresp) {
+					detail.setLmsId(lmsHeader.getLmsId());
+			
+			}
+			lmsDetailresp=	lmsDetailRepo.saveAll(lmsHeader.getLmsDetailList());
 			System.err.println("Added LMS Header Is="+"\t"+lmsHeadResp);
 			
 			
@@ -494,8 +519,12 @@ public class MasterApiController {
 		List<InquiryDetail> inqDetailList=new ArrayList<InquiryDetail>();
 		try {
 			
-			inqDetailList=inquiryDetailRepo.saveAll(inquiryHead.getInqDetailList());
+			
 			inqHeaderResp=inquiryHeaderRepo.save(inquiryHead);
+			for(InquiryDetail detail :inqDetailList) {
+				detail.setInqId(inquiryHead.getInqId());
+			}
+			inqDetailList=inquiryDetailRepo.saveAll(inquiryHead.getInqDetailList());
 			System.err.println("Saved Headr Is ="+"\t"+inqHeaderResp);
 			
 			
