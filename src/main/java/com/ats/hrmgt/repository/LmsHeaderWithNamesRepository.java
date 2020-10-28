@@ -24,7 +24,7 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 			"        FROM\n" + 
 			"            m_tags     \n" + 
 			"        WHERE\n" + 
-			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names        \n" + 
+			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names,'' as cp_info        \n" + 
 			"    FROM\n" + 
 			"        lms_header,\n" + 
 			"        m_channel        \n" + 
@@ -49,29 +49,28 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 	
 	//Te Fetch List Of All LMS Header
 	@Query(value="SELECT\n" + 
-			"    lms_header.*,\n" + 
-			"   '' AS account_type,\n" + 
-			"    m_channel.m_channel_name AS channel_name,\n" + 
-			"    (SELECT\n" + 
-			"        GROUP_CONCAT(m_tags.m_tag_name)\n" + 
+			"        lms_header.*,\n" + 
+			"        '' AS account_type,\n" + 
+			"        m_channel.m_channel_name AS channel_name,\n" + 
+			"        (SELECT\n" + 
+			"            GROUP_CONCAT(m_tags.m_tag_name)     \n" + 
+			"        FROM\n" + 
+			"            m_tags     \n" + 
+			"        WHERE\n" + 
+			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names,\n" + 
+			"        concat(lms_detail.cp_name,', ',m_designation.m_designation_name,', ',lms_detail.cp_mobile) as cp_info\n" + 
 			"    FROM\n" + 
-			"        m_tags\n" + 
+			"        lms_header, \n" + 
+			"        m_channel,\n" + 
+			"        lms_detail,\n" + 
+			"        m_designation\n" + 
 			"    WHERE\n" + 
-			"       FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names\n" + 
-			"       FROM\n" + 
-			"       lms_header,\n" + 
-			"       md_acc_type,\n" + 
-			"       m_channel\n" + 
-			"       WHERE\n" + 
-			"       lms_header.del_status=1 \n" + 
-			"       AND \n" + 
-			"       lms_header.is_active=1\n" + 
-			"       AND\n" + 
-			"       lms_header.md_acc_type_id=md_acc_type.md_acc_type_id\n" + 
-			"       AND\n" + 
-			"       lms_header.channel_id=m_channel.m_channel_id\n" + 
-			"       GROUP BY\n" + 
-			"       lms_header.lms_id",nativeQuery=true)
+			"        lms_header.del_status=1         \n" + 
+			"        AND         lms_header.is_active=1        \n" + 
+			"        AND        lms_header.channel_id=m_channel.m_channel_id\n" + 
+			"        and lms_header.lms_id=lms_detail.lms_id and lms_detail.cp_primary=1 and m_designation.m_designation_id=lms_detail.cp_designation_id and lms_detail.del_status=1\n" + 
+			"    GROUP BY\n" + 
+			"        lms_header.lms_id",nativeQuery=true)
 	List<LmsHeaderWithNames> getListOfAllLmsHeader();
 	
 

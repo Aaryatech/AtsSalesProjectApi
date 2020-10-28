@@ -10,31 +10,35 @@ import javax.persistence.Id;
 public class TaskStatus {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int mTaskStatusId;
-	
+
 	private int mdAccTypeId;
-	
-	@Column(name="m_task_status_sequence")
+
+	@Column(name = "m_task_status_sequence")
 	private int mTaskStatusSequence;
-	
+
 	private String mTaskStatusName;
-	
+
 	private String mTaskStatusDesc;
-	
-	private boolean mTaskIsClosed;
-	
-	private boolean delStatus;
-	
-	private boolean isActive;
-	
+
+	private int mTaskIsClosed;
+
+	private int delStatus;
+
+	private int mTaskIsInternal;
+
+	private int mTaskPts;
+
+	private int isActive;
+
 	private int makerUserId;
-	
+
 	private String makerDatetime;
-	
-	private int exInt1,exInt2;
-	
-	private String exVar1,exVar2;
+
+	private int exInt1, exInt2;
+
+	private String exVar1, exVar2;
 
 	public int getmTaskStatusId() {
 		return mTaskStatusId;
@@ -60,7 +64,6 @@ public class TaskStatus {
 		this.mdAccTypeId = mdAccTypeId;
 	}
 
-
 	public String getmTaskStatusName() {
 		return mTaskStatusName;
 	}
@@ -77,27 +80,27 @@ public class TaskStatus {
 		this.mTaskStatusDesc = mTaskStatusDesc;
 	}
 
-	public boolean ismTaskIsClosed() {
+	public int ismTaskIsClosed() {
 		return mTaskIsClosed;
 	}
 
-	public void setmTaskIsClosed(boolean mTaskIsClosed) {
+	public void setmTaskIsClosed(int mTaskIsClosed) {
 		this.mTaskIsClosed = mTaskIsClosed;
 	}
 
-	public boolean isDelStatus() {
+	public int isDelStatus() {
 		return delStatus;
 	}
 
-	public void setDelStatus(boolean delStatus) {
+	public void setDelStatus(int delStatus) {
 		this.delStatus = delStatus;
 	}
 
-	public boolean isActive() {
+	public int isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(int isActive) {
 		this.isActive = isActive;
 	}
 
@@ -149,25 +152,46 @@ public class TaskStatus {
 		this.exVar2 = exVar2;
 	}
 
+	public int getmTaskIsInternal() {
+		return mTaskIsInternal;
+	}
+
+	public void setmTaskIsInternal(int mTaskIsInternal) {
+		this.mTaskIsInternal = mTaskIsInternal;
+	}
+
+	public int getmTaskPts() {
+		return mTaskPts;
+	}
+
+	public void setmTaskPts(int mTaskPts) {
+		this.mTaskPts = mTaskPts;
+	}
+
+	public int getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+
+	public int getmTaskIsClosed() {
+		return mTaskIsClosed;
+	}
+
+	public int getDelStatus() {
+		return delStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "TaskStatus [mTaskStatusId=" + mTaskStatusId + ", mdAccTypeId=" + mdAccTypeId + ", mTaskStatusSequence="
 				+ mTaskStatusSequence + ", mTaskStatusName=" + mTaskStatusName + ", mTaskStatusDesc=" + mTaskStatusDesc
-				+ ", mTaskIsClosed=" + mTaskIsClosed + ", delStatus=" + delStatus + ", isActive=" + isActive
-				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1
-				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
+				+ ", mTaskIsClosed=" + mTaskIsClosed + ", delStatus=" + delStatus + ", mTaskIsInternal="
+				+ mTaskIsInternal + ", mTaskPts=" + mTaskPts + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1="
+				+ exVar1 + ", exVar2=" + exVar2 + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

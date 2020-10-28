@@ -68,7 +68,7 @@ public class LmsHeaderWithNames {
 	private String tagNames;
 	
 	
-	
+	private String cpInfo;
 	
 	
 	@Transient
@@ -225,7 +225,7 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public int isAccStatus() {
+	public int getAccStatus() {
 		return accStatus;
 	}
 
@@ -245,7 +245,7 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public int isDelStatus() {
+	public int getDelStatus() {
 		return delStatus;
 	}
 
@@ -255,12 +255,12 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public int isActive() {
+	public int getIsActive() {
 		return isActive;
 	}
 
 
-	public void setActive(int isActive) {
+	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
 
@@ -325,16 +325,6 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public List<LmsDetail> getLmsDetailList() {
-		return lmsDetailList;
-	}
-
-
-	public void setLmsDetailList(List<LmsDetail> lmsDetailList) {
-		this.lmsDetailList = lmsDetailList;
-	}
-
-
 	public String getAccountType() {
 		return accountType;
 	}
@@ -365,33 +355,40 @@ public class LmsHeaderWithNames {
 	}
 
 
-	@Override
-	public String toString() {
-		return "LmsHeader [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId=" + channelId + ", accCode="
-				+ accCode + ", accRefCode=" + accRefCode + ", accDomainId=" + accDomainId + ", accDomainOther="
-				+ accDomainOther + ", accTags=" + accTags + ", accCompany=" + accCompany + ", accWebsite=" + accWebsite
-				+ ", accTurnover=" + accTurnover + ", accEmpCount=" + accEmpCount + ", accScaleDesc=" + accScaleDesc
-				+ ", accAtsRating=" + accAtsRating + ", accCompanyLandline=" + accCompanyLandline + ", accStatus="
-				+ accStatus + ", accRemark=" + accRemark + ", delStatus=" + delStatus + ", isActive=" + isActive
-				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1
-				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", accountType=" + accountType
-				+ ", channelName=" + channelName + ", tagNames=" + tagNames + ", lmsDetailList=" + lmsDetailList + "]";
+	public String getCpInfo() {
+		return cpInfo;
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void setCpInfo(String cpInfo) {
+		this.cpInfo = cpInfo;
+	}
+
+
+	public List<LmsDetail> getLmsDetailList() {
+		return lmsDetailList;
+	}
+
+
+	public void setLmsDetailList(List<LmsDetail> lmsDetailList) {
+		this.lmsDetailList = lmsDetailList;
+	}
+
+
+	@Override
+	public String toString() {
+		return "LmsHeaderWithNames [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId=" + channelId
+				+ ", accCode=" + accCode + ", accRefCode=" + accRefCode + ", accDomainId=" + accDomainId
+				+ ", accDomainOther=" + accDomainOther + ", accTags=" + accTags + ", accCompany=" + accCompany
+				+ ", accWebsite=" + accWebsite + ", accTurnover=" + accTurnover + ", accEmpCount=" + accEmpCount
+				+ ", accScaleDesc=" + accScaleDesc + ", accAtsRating=" + accAtsRating + ", accCompanyLandline="
+				+ accCompanyLandline + ", accStatus=" + accStatus + ", accRemark=" + accRemark + ", delStatus="
+				+ delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime="
+				+ makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
+				+ exVar2 + ", accountType=" + accountType + ", channelName=" + channelName + ", tagNames=" + tagNames
+				+ ", cpInfo=" + cpInfo + ", lmsDetailList=" + lmsDetailList + "]";
+	}
+ 
 	
 	
 	

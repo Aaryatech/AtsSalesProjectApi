@@ -44,11 +44,11 @@ public class TaskDetails {
 	
 	private String taskWhatWentWrong;
 	
-	private boolean thisTaskStatus;
+	private int thisTaskStatus;
 	
-	private boolean  taskFinalStatus;
+	private int  taskFinalStatus;
 	
-	private boolean taskPriority;
+	private int taskPriority;
 	
 	private int taskPts;
 	
@@ -57,9 +57,9 @@ public class TaskDetails {
 	private int taskDoneBy;
 	
 	
-	private boolean delStatus;
+	private int delStatus;
 	
-	private boolean isActive;
+	private int isActive;
 	
 	private int makerUserId;
 	
@@ -72,18 +72,6 @@ public class TaskDetails {
 	private int  exInt1,exInt2;
 	
 	private String exVar1,exVar2;
-	
-	
-	
-	
-	public int getTaskDoneBy() {
-		return taskDoneBy;
-	}
-
-	public void setTaskDoneBy(int taskDoneBy) {
-		this.taskDoneBy = taskDoneBy;
-	}
-
 
 	public int getTaskId() {
 		return taskId;
@@ -213,27 +201,27 @@ public class TaskDetails {
 		this.taskWhatWentWrong = taskWhatWentWrong;
 	}
 
-	public boolean isThisTaskStatus() {
+	public int getThisTaskStatus() {
 		return thisTaskStatus;
 	}
 
-	public void setThisTaskStatus(boolean thisTaskStatus) {
+	public void setThisTaskStatus(int thisTaskStatus) {
 		this.thisTaskStatus = thisTaskStatus;
 	}
 
-	public boolean isTaskFinalStatus() {
+	public int getTaskFinalStatus() {
 		return taskFinalStatus;
 	}
 
-	public void setTaskFinalStatus(boolean taskFinalStatus) {
+	public void setTaskFinalStatus(int taskFinalStatus) {
 		this.taskFinalStatus = taskFinalStatus;
 	}
 
-	public boolean isTaskPriority() {
+	public int getTaskPriority() {
 		return taskPriority;
 	}
 
-	public void setTaskPriority(boolean taskPriority) {
+	public void setTaskPriority(int taskPriority) {
 		this.taskPriority = taskPriority;
 	}
 
@@ -253,19 +241,27 @@ public class TaskDetails {
 		this.taskDoneDate = taskDoneDate;
 	}
 
-	public boolean isDelStatus() {
+	public int getTaskDoneBy() {
+		return taskDoneBy;
+	}
+
+	public void setTaskDoneBy(int taskDoneBy) {
+		this.taskDoneBy = taskDoneBy;
+	}
+
+	public int getDelStatus() {
 		return delStatus;
 	}
 
-	public void setDelStatus(boolean delStatus) {
+	public void setDelStatus(int delStatus) {
 		this.delStatus = delStatus;
 	}
 
-	public boolean isActive() {
+	public int getIsActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
 
@@ -349,13 +345,9 @@ public class TaskDetails {
 				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
 				+ exVar2 + "]";
 	}
-
-
-
-
 	
 	
-	
+	 
 	
 	
 	

@@ -45,13 +45,13 @@ public class LmsHeader {
 	
 	private String accCompanyLandline;
 	
-	private boolean accStatus;
+	private int accStatus;
 	
 	private String accRemark;
 	
-	private boolean delStatus;
+	private int delStatus;
 	
-	private boolean isActive;
+	private int isActive;
 	
 	private int makerUserId;
 	
@@ -61,21 +61,8 @@ public class LmsHeader {
 	
 	private String exVar1,exVar2;
 	
-	
-	
 	@Transient
     private	List<LmsDetail> lmsDetailList;
-
-	
-	
-	
-	public List<LmsDetail> getLmsDetailList() {
-		return lmsDetailList;
-	}
-
-	public void setLmsDetailList(List<LmsDetail> lmsDetailList) {
-		this.lmsDetailList = lmsDetailList;
-	}
 
 	public int getLmsId() {
 		return lmsId;
@@ -197,11 +184,11 @@ public class LmsHeader {
 		this.accCompanyLandline = accCompanyLandline;
 	}
 
-	public boolean isAccStatus() {
+	public int getAccStatus() {
 		return accStatus;
 	}
 
-	public void setAccStatus(boolean accStatus) {
+	public void setAccStatus(int accStatus) {
 		this.accStatus = accStatus;
 	}
 
@@ -213,19 +200,19 @@ public class LmsHeader {
 		this.accRemark = accRemark;
 	}
 
-	public boolean isDelStatus() {
+	public int getDelStatus() {
 		return delStatus;
 	}
 
-	public void setDelStatus(boolean delStatus) {
+	public void setDelStatus(int delStatus) {
 		this.delStatus = delStatus;
 	}
 
-	public boolean isActive() {
+	public int getIsActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
 
@@ -277,6 +264,14 @@ public class LmsHeader {
 		this.exVar2 = exVar2;
 	}
 
+	public List<LmsDetail> getLmsDetailList() {
+		return lmsDetailList;
+	}
+
+	public void setLmsDetailList(List<LmsDetail> lmsDetailList) {
+		this.lmsDetailList = lmsDetailList;
+	}
+
 	@Override
 	public String toString() {
 		return "LmsHeader [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId=" + channelId + ", accCode="
@@ -290,18 +285,7 @@ public class LmsHeader {
 				+ lmsDetailList + "]";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 	
 	
 	

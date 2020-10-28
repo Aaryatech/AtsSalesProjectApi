@@ -13,7 +13,7 @@ public interface LmsDetailRepository extends JpaRepository<LmsDetail, Integer> {
 	
 	
 	//Fetch Records By Lms Id
-	@Query(value="SELECT * FROM lms_detail WHERE lms_id=:lmsId",nativeQuery=true)
+	@Query(value="SELECT * FROM lms_detail WHERE lms_id=:lmsId and del_status=1",nativeQuery=true)
 	List<LmsDetail> getLmsDetailByLmsId(@Param("lmsId") int lmsId);
 	
 

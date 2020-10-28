@@ -410,6 +410,7 @@ public class MasterApiController {
 		LmsHeader lmsHeadResp=new LmsHeader();
 		List<LmsDetail> lmsDetailresp=new ArrayList<LmsDetail>();
 		try {
+			System.out.println(lmsHeader);
 			lmsHeadResp=lmsHeadRepo.save(lmsHeader);
 			lmsDetailresp=lmsHeader.getLmsDetailList();
 			for(LmsDetail detail :lmsDetailresp) {

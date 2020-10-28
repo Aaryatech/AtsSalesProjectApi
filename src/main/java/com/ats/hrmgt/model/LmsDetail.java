@@ -25,6 +25,7 @@ public class LmsDetail {
 	private String cpEmail;
 	
 	private int cpPrimary;
+	private int delStatus;
 	
 	private String cpRemarks;
 	
@@ -168,12 +169,22 @@ public class LmsDetail {
 	}
 
 
+	public int getDelStatus() {
+		return delStatus;
+	}
+
+
+	public void setDelStatus(int delStatus) {
+		this.delStatus = delStatus;
+	}
+
+
 	@Override
 	public String toString() {
 		return "LmsDetail [lmsDetailId=" + lmsDetailId + ", lmsId=" + lmsId + ", cpDesignationId=" + cpDesignationId
 				+ ", cpName=" + cpName + ", cpMobile=" + cpMobile + ", cpMobile2=" + cpMobile2 + ", cpEmail=" + cpEmail
-				+ ", cpPrimary=" + cpPrimary + ", cpRemarks=" + cpRemarks + ", exInt1=" + exInt1 + ", exInt2=" + exInt2
-				+ ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
+				+ ", cpPrimary=" + cpPrimary + ", delStatus=" + delStatus + ", cpRemarks=" + cpRemarks + ", exInt1="
+				+ exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
 	}
 
 
