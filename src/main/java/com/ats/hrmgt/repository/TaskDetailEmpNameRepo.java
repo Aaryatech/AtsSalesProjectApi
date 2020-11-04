@@ -42,9 +42,9 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			+ " case when TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)>0 then 1\n" + 
 			"            else 0  \n" + 
 			"        end  as sts,\n" + 
-			"        TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time) as day,\n" + 
-			"        TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24 AS hour,\n" + 
-			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,acc.md_acc_type_text,"
+			"        ifnull(TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time),0) as day,\n" + 
+			"        ifnull(TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24,0) AS hour,\n" + 
+			"        ifnull(TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60,0) AS minutes,acc.md_acc_type_text,"
 			+ "(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed\n" + 
 			"    FROM\n" + 
 			"        task_details t,md_acc_type acc \n" + 
