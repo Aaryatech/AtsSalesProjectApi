@@ -19,4 +19,7 @@ public interface TaskDetailsRepository extends JpaRepository<TaskDetails, Intege
 	@Query(value="UPDATE task_details set del_status=false WHERE task_id=:taskId",nativeQuery=true)
 	int deleteTaskDetailsByTaskId(@Param("taskId") int taskId) ;
 
+	@Query(value="select * from task_details WHERE task_id=:taskId",nativeQuery=true)
+	TaskDetails finByTaskId(int taskId);
+
 }

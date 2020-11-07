@@ -28,10 +28,10 @@ public class TaskDetailsEmpName {
 
 	private String taskEntryType;
 
-	private String taskScheDate;
+	private Date taskScheDate;
 
 	private Date taskScheTime;
-
+	private Date time;
 	private String taskAllotedTo;
 
 	private int taskAllottedBy;
@@ -54,10 +54,9 @@ public class TaskDetailsEmpName {
 
 	private int taskPts;
 
-	private String taskDoneDate;
-	
+	private Date taskDoneDate;
+
 	private int taskDoneBy;
-	
 
 	public int getTaskDoneBy() {
 		return taskDoneBy;
@@ -164,11 +163,12 @@ public class TaskDetailsEmpName {
 		this.taskEntryType = taskEntryType;
 	}
 
-	public String getTaskScheDate() {
+	@JsonFormat(locale = "Locale.ENGLISH", timezone = "Asia/Kolkata", pattern = "dd-MM-yyyy")
+	public Date getTaskScheDate() {
 		return taskScheDate;
 	}
 
-	public void setTaskScheDate(String taskScheDate) {
+	public void setTaskScheDate(Date taskScheDate) {
 		this.taskScheDate = taskScheDate;
 	}
 
@@ -244,12 +244,12 @@ public class TaskDetailsEmpName {
 	public void setTaskPts(int taskPts) {
 		this.taskPts = taskPts;
 	}
-
-	public String getTaskDoneDate() {
+	@JsonFormat(locale = "Locale.ENGLISH", timezone = "Asia/Kolkata", pattern = "dd-MM-yyyy hh:mm:ss a")
+	public Date getTaskDoneDate() {
 		return taskDoneDate;
 	}
 
-	public void setTaskDoneDate(String taskDoneDate) {
+	public void setTaskDoneDate(Date taskDoneDate) {
 		this.taskDoneDate = taskDoneDate;
 	}
 
@@ -421,24 +421,31 @@ public class TaskDetailsEmpName {
 		this.completed = completed;
 	}
 
+	@JsonFormat(locale = "Locale.ENGLISH", timezone = "Asia/Kolkata", pattern = "HH:mm")
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
 	@Override
 	public String toString() {
 		return "TaskDetailsEmpName [taskId=" + taskId + ", mdAccTypeId=" + mdAccTypeId + ", priKey=" + priKey
 				+ ", taskTittle=" + taskTittle + ", taskTypeId=" + taskTypeId + ", taskRepType=" + taskRepType
 				+ ", taskEntryType=" + taskEntryType + ", taskScheDate=" + taskScheDate + ", taskScheTime="
-				+ taskScheTime + ", taskAllotedTo=" + taskAllotedTo + ", taskAllottedBy=" + taskAllottedBy
-				+ ", taskAllotmentInstructions=" + taskAllotmentInstructions + ", taskClientDiscussion="
-				+ taskClientDiscussion + ", taskClientProfiling=" + taskClientProfiling + ", taskThoughQuestions="
-				+ taskThoughQuestions + ", taskWhatWentWrong=" + taskWhatWentWrong + ", thisTaskStatus="
-				+ thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority=" + taskPriority
-				+ ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy=" + taskDoneBy
-				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ taskScheTime + ", time=" + time + ", taskAllotedTo=" + taskAllotedTo + ", taskAllottedBy="
+				+ taskAllottedBy + ", taskAllotmentInstructions=" + taskAllotmentInstructions
+				+ ", taskClientDiscussion=" + taskClientDiscussion + ", taskClientProfiling=" + taskClientProfiling
+				+ ", taskThoughQuestions=" + taskThoughQuestions + ", taskWhatWentWrong=" + taskWhatWentWrong
+				+ ", thisTaskStatus=" + thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority="
+				+ taskPriority + ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy="
+				+ taskDoneBy + ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
 				+ ", makerDatetime=" + makerDatetime + ", allocatedById=" + allocatedById + ", allocatedDatetime="
 				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
 				+ exVar2 + ", employeeName=" + employeeName + ", sts=" + sts + ", day=" + day + ", hour=" + hour
 				+ ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText + ", completed=" + completed + "]";
 	}
-
-
 
 }

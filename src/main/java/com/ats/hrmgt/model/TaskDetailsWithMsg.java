@@ -18,7 +18,7 @@ public class TaskDetailsWithMsg {
 	
 	
 	
-	private String Message;
+	private String message;
 
 
 	private String empName;
@@ -42,15 +42,14 @@ public class TaskDetailsWithMsg {
 	public void setTaskDoneDate(String taskDoneDate) {
 		this.taskDoneDate = taskDoneDate;
 	}
-
-
+ 
 	public String getMessage() {
-		return Message;
+		return message;
 	}
 
 
 	public void setMessage(String message) {
-		Message = message;
+		this.message = message;
 	}
 
 
@@ -66,7 +65,7 @@ public class TaskDetailsWithMsg {
 
 	@Override
 	public String toString() {
-		return "TaskDetailsWithMsg [taskId=" + taskId + ", taskDoneDate=" + taskDoneDate + ", Message=" + Message
+		return "TaskDetailsWithMsg [taskId=" + taskId + ", taskDoneDate=" + taskDoneDate + ", message=" + message
 				+ ", empName=" + empName + "]";
 	}
 	
