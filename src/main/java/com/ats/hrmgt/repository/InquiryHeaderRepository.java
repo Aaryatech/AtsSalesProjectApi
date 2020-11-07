@@ -15,14 +15,14 @@ public interface InquiryHeaderRepository  extends JpaRepository<InquiryHeader, I
 	
 	
 	//To Fetch All inquiryHeader
-	@Query(value="SELECT * FROM inquiry_header WHERE del_status=true AND is_active=true",nativeQuery=true)
+	@Query(value="SELECT * FROM inquiry_header WHERE del_status=1 AND is_active=1",nativeQuery=true)
 	List<InquiryHeader> getAllInquiryHeaderList();
 
 	
 	//To Delete Inquiry Header
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE inquiry_header SET del_status=false WHERE inq_id=:inqId",nativeQuery=true)
+	@Query(value="UPDATE inquiry_header SET del_status=0 WHERE inq_id=:inqId",nativeQuery=true)
 	int deleteInquiryHeaderByInqId(@Param("inqId") Integer inqId);
 	
 	

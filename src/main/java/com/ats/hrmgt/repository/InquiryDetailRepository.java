@@ -12,7 +12,7 @@ public interface InquiryDetailRepository extends JpaRepository<InquiryDetail, In
 	
 	
 	//Fetch inquiry Detail Using inq_id
-	@Query(value="SELECT * FROM inquiry_detail WHERE inq_id=:inqId" ,nativeQuery=true)
+	@Query(value="SELECT * FROM inquiry_detail WHERE inq_id=:inqId AND del_status=1" ,nativeQuery=true)
 	List<InquiryDetail> getInqDeatilById(@Param("inqId") int inqId);
 
 }

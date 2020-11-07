@@ -1,6 +1,7 @@
 package com.ats.hrmgt.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -522,7 +523,7 @@ public class MasterApiController {
 			
 			
 			inqHeaderResp=inquiryHeaderRepo.save(inquiryHead);
-			for(InquiryDetail detail :inqDetailList) {
+			for(InquiryDetail detail :inquiryHead.getInqDetailList()) {
 				detail.setInqId(inquiryHead.getInqId());
 			}
 			inqDetailList=inquiryDetailRepo.saveAll(inquiryHead.getInqDetailList());
@@ -608,8 +609,11 @@ public class MasterApiController {
 		List<InquiryDetail> inqDetailList=new ArrayList<InquiryDetail>();
 		
 		try {
+			
 			inqDetailList=inquiryDetailRepo.getInqDeatilById(inqId);
+			System.err.println("inqDetailLis"+inqDetailList);
 			inqHeadResp=inquiryHeadWithNames.getInqHeaderWithNameById(inqId);
+			//System.err.println("Before Add inqDEtailLsit"+inqHeadResp);
 			inqHeadResp.setInqDetailList(inqDetailList);
 			System.err.println("Response From /getInqHeaderWithNameById ="+"\t"+inqHeadResp);
 		} catch (Exception e) {

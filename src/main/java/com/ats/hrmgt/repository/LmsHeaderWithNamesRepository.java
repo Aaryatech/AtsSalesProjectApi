@@ -14,7 +14,7 @@ import com.ats.hrmgt.model.LmsHeaderWithNames;
 public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWithNames, Integer>{
 	
 	
-	//Fetch Lms Header By lms_is And del_status ,is_active is True
+	//Fetch Lms Header By lms_id And del_status ,is_active is True
 	@Query(value="   SELECT\n" + 
 			"        lms_header.*,\n" + 
 			"        '' AS account_type,\n" + 

@@ -7,10 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
-//TO Fetch All Data With Account Type Name And Channel Name And Names Of Tags
-@Entity
-public class LmsHeaderWithNames {
 
+@Entity
+public class LmsHeaderWithNamesAndCustDetail {
+
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int lmsId;
@@ -71,6 +73,10 @@ public class LmsHeaderWithNames {
 	
 	
 	private String cpInfo;
+	
+	private String cpContact;
+	
+	private String cpInfo2;
 	
 	
 	@Transient
@@ -134,6 +140,16 @@ public class LmsHeaderWithNames {
 
 	public void setAccDomainId(int accDomainId) {
 		this.accDomainId = accDomainId;
+	}
+
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 
@@ -367,6 +383,26 @@ public class LmsHeaderWithNames {
 	}
 
 
+	public String getCpContact() {
+		return cpContact;
+	}
+
+
+	public void setCpContact(String cpContact) {
+		this.cpContact = cpContact;
+	}
+
+
+	public String getCpInfo2() {
+		return cpInfo2;
+	}
+
+
+	public void setCpInfo2(String cpInfo2) {
+		this.cpInfo2 = cpInfo2;
+	}
+
+
 	public List<LmsDetail> getLmsDetailList() {
 		return lmsDetailList;
 	}
@@ -377,20 +413,10 @@ public class LmsHeaderWithNames {
 	}
 
 
-	public String getCustomerName() {
-		return customerName;
-	}
-
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-
 	@Override
 	public String toString() {
-		return "LmsHeaderWithNames [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId=" + channelId
-				+ ", accCode=" + accCode + ", accRefCode=" + accRefCode + ", accDomainId=" + accDomainId
+		return "LmsHeaderWithNamesAndCustDetail [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId="
+				+ channelId + ", accCode=" + accCode + ", accRefCode=" + accRefCode + ", accDomainId=" + accDomainId
 				+ ", customerName=" + customerName + ", accDomainOther=" + accDomainOther + ", accTags=" + accTags
 				+ ", accCompany=" + accCompany + ", accWebsite=" + accWebsite + ", accTurnover=" + accTurnover
 				+ ", accEmpCount=" + accEmpCount + ", accScaleDesc=" + accScaleDesc + ", accAtsRating=" + accAtsRating
@@ -398,11 +424,13 @@ public class LmsHeaderWithNames {
 				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
 				+ ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1="
 				+ exVar1 + ", exVar2=" + exVar2 + ", accountType=" + accountType + ", channelName=" + channelName
-				+ ", tagNames=" + tagNames + ", cpInfo=" + cpInfo + ", lmsDetailList=" + lmsDetailList + "]";
+				+ ", tagNames=" + tagNames + ", cpInfo=" + cpInfo + ", cpContact=" + cpContact + ", cpInfo2=" + cpInfo2
+				+ ", lmsDetailList=" + lmsDetailList + "]";
 	}
-
-
-
+	
+	
+	
+	
 	
 	
 	

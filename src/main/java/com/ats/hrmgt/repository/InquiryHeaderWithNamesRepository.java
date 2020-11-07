@@ -14,6 +14,7 @@ public interface InquiryHeaderWithNamesRepository  extends JpaRepository<Inquiry
 			"        inquiry_header.*,\n" + 
 			"       \n" + 
 			"        m_channel.m_channel_name AS channel_Name,\n" + 
+			"        md_acc_type.md_acc_type_short_name AS md_acc_name,\n" + 
 			"        (SELECT\n" + 
 			"            GROUP_CONCAT(m_tags.m_tag_name)     \n" + 
 			"        FROM\n" + 
@@ -23,12 +24,14 @@ public interface InquiryHeaderWithNamesRepository  extends JpaRepository<Inquiry
 			"    FROM\n" + 
 			"        inquiry_header,\n" + 
 			"        \n" + 
+			"         md_acc_type,\n"+
 			"        m_channel        \n" + 
 			"    WHERE\n" + 
 			"        inquiry_header.del_status=1         \n" + 
 			"        AND         inquiry_header.is_active=1        \n" + 
 			"             \n" + 
 			"        AND        inquiry_header.channel_id=m_channel.m_channel_id        \n" + 
+			"        AND        inquiry_header.md_acc_type_id=md_acc_type.md_acc_type_id        \n"+
 			"    GROUP BY\n" + 
 			"        inquiry_header.inq_id\n" + 
 			"",nativeQuery=true)
@@ -40,6 +43,7 @@ public interface InquiryHeaderWithNamesRepository  extends JpaRepository<Inquiry
 			"        inquiry_header.*,\n" + 
 			"       \n" + 
 			"        m_channel.m_channel_name AS channel_Name,\n" + 
+			"        md_acc_type.md_acc_type_short_name AS md_acc_name,\n" + 
 			"        (SELECT\n" + 
 			"            GROUP_CONCAT(m_tags.m_tag_name)     \n" + 
 			"        FROM\n" + 
@@ -49,12 +53,14 @@ public interface InquiryHeaderWithNamesRepository  extends JpaRepository<Inquiry
 			"    FROM\n" + 
 			"        inquiry_header,\n" + 
 			"        \n" + 
+			"         md_acc_type,\n"+
 			"        m_channel        \n" + 
 			"    WHERE\n" + 
 			"        inquiry_header.del_status=1         \n" + 
 			"        AND         inquiry_header.is_active=1        \n" + 
 			"             \n" + 
 			"        AND        inquiry_header.channel_id=m_channel.m_channel_id      \n" + 
+			"        AND        inquiry_header.md_acc_type_id=md_acc_type.md_acc_type_id        \n"+
 			"        AND inquiry_header.inq_id=:inqId\n" + 
 			"    GROUP BY\n" + 
 			"        inquiry_header.inq_id\n" + 

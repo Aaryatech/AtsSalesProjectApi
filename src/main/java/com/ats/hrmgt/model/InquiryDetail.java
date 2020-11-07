@@ -31,6 +31,8 @@ public class InquiryDetail {
 	private int exInt1,exInt2;
 	
 	private String exVar1,exVar2;
+	
+	private int delStatus;
 
 	public int getInqDetailId() {
 		return inqDetailId;
@@ -136,14 +138,22 @@ public class InquiryDetail {
 		this.exVar2 = exVar2;
 	}
 
+	public int getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(int delStatus) {
+		this.delStatus = delStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "InquiryDetail [inqDetailId=" + inqDetailId + ", inqId=" + inqId + ", cpDesignationId=" + cpDesignationId
 				+ ", cpName=" + cpName + ", cpMobile=" + cpMobile + ", cpMobile2=" + cpMobile2 + ", cpEmail=" + cpEmail
 				+ ", cpPrimary=" + cpPrimary + ", cpRemarks=" + cpRemarks + ", exInt1=" + exInt1 + ", exInt2=" + exInt2
-				+ ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + "]";
+				+ ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", delStatus=" + delStatus + "]";
 	}
-	
+
 	
 	
 	

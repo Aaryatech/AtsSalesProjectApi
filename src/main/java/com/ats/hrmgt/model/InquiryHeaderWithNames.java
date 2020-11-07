@@ -21,6 +21,8 @@ public class InquiryHeaderWithNames {
 	
 	private int channelId;
 	
+	private int mdAccTypeId;
+	
 	private String pmCode;
 	
 	private int inqRefCode;
@@ -50,9 +52,9 @@ public class InquiryHeaderWithNames {
 	
 	private String inqRemark;
 	
-	private boolean delStatus;
+	private int delStatus;
 	
-	private boolean isActive;
+	private int isActive;
 	
 	private int makerUserId;
 	
@@ -67,6 +69,8 @@ public class InquiryHeaderWithNames {
 	List<InquiryDetail> inqDetailList;
 	
 	private String channelName;
+	
+	private String mdAccName;
 	
 	private String tagNames;
 
@@ -198,21 +202,7 @@ public class InquiryHeaderWithNames {
 		this.inqRemark = inqRemark;
 	}
 
-	public boolean isDelStatus() {
-		return delStatus;
-	}
 
-	public void setDelStatus(boolean delStatus) {
-		this.delStatus = delStatus;
-	}
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
 
 	public int getMakerUserId() {
 		return makerUserId;
@@ -286,18 +276,53 @@ public class InquiryHeaderWithNames {
 		this.tagNames = tagNames;
 	}
 
+	public int getMdAccTypeId() {
+		return mdAccTypeId;
+	}
+
+	public void setMdAccTypeId(int mdAccTypeId) {
+		this.mdAccTypeId = mdAccTypeId;
+	}
+
+	public String getMdAccName() {
+		return mdAccName;
+	}
+
+	public void setMdAccName(String mdAccName) {
+		this.mdAccName = mdAccName;
+	}
+
+	public int getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(int delStatus) {
+		this.delStatus = delStatus;
+	}
+
+	public int getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+
 	@Override
 	public String toString() {
-		return "InquiryHeaderWithNames [inqId=" + inqId + ", channelId=" + channelId + ", pmCode=" + pmCode
-				+ ", inqRefCode=" + inqRefCode + ", inqDomainId=" + inqDomainId + ", inqDomainOther=" + inqDomainOther
-				+ ", inqTags=" + inqTags + ", inqCompany=" + inqCompany + ", inqWebsite=" + inqWebsite
-				+ ", inqTurnover=" + inqTurnover + ", inqEmpCount=" + inqEmpCount + ", inqScaleDesc=" + inqScaleDesc
-				+ ", inqAtsRating=" + inqAtsRating + ", inqCompanyLandline=" + inqCompanyLandline + ", inqStatus="
-				+ inqStatus + ", inqRemark=" + inqRemark + ", delStatus=" + delStatus + ", isActive=" + isActive
-				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1
-				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", inqDetailList="
-				+ inqDetailList + ", channelName=" + channelName + ", tagNames=" + tagNames + "]";
+		return "InquiryHeaderWithNames [inqId=" + inqId + ", channelId=" + channelId + ", mdAccTypeId=" + mdAccTypeId
+				+ ", pmCode=" + pmCode + ", inqRefCode=" + inqRefCode + ", inqDomainId=" + inqDomainId
+				+ ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags + ", inqCompany=" + inqCompany
+				+ ", inqWebsite=" + inqWebsite + ", inqTurnover=" + inqTurnover + ", inqEmpCount=" + inqEmpCount
+				+ ", inqScaleDesc=" + inqScaleDesc + ", inqAtsRating=" + inqAtsRating + ", inqCompanyLandline="
+				+ inqCompanyLandline + ", inqStatus=" + inqStatus + ", inqRemark=" + inqRemark + ", delStatus="
+				+ delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime="
+				+ makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
+				+ exVar2 + ", inqDetailList=" + inqDetailList + ", channelName=" + channelName + ", mdAccName="
+				+ mdAccName + ", tagNames=" + tagNames + "]";
 	}
+
+
 	
 	
 	
