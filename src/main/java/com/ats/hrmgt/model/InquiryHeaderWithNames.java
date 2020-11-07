@@ -33,6 +33,8 @@ public class InquiryHeaderWithNames {
 	
 	private String inqTags;
 	
+	private String inquiryTittle;
+	
 	private String inqCompany;
 	
 	private String inqWebsite;
@@ -308,19 +310,28 @@ public class InquiryHeaderWithNames {
 		this.isActive = isActive;
 	}
 
+	public String getInquiryTittle() {
+		return inquiryTittle;
+	}
+
+	public void setInquiryTittle(String inquiryTittle) {
+		this.inquiryTittle = inquiryTittle;
+	}
+
 	@Override
 	public String toString() {
 		return "InquiryHeaderWithNames [inqId=" + inqId + ", channelId=" + channelId + ", mdAccTypeId=" + mdAccTypeId
 				+ ", pmCode=" + pmCode + ", inqRefCode=" + inqRefCode + ", inqDomainId=" + inqDomainId
-				+ ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags + ", inqCompany=" + inqCompany
-				+ ", inqWebsite=" + inqWebsite + ", inqTurnover=" + inqTurnover + ", inqEmpCount=" + inqEmpCount
-				+ ", inqScaleDesc=" + inqScaleDesc + ", inqAtsRating=" + inqAtsRating + ", inqCompanyLandline="
-				+ inqCompanyLandline + ", inqStatus=" + inqStatus + ", inqRemark=" + inqRemark + ", delStatus="
-				+ delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime="
-				+ makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
-				+ exVar2 + ", inqDetailList=" + inqDetailList + ", channelName=" + channelName + ", mdAccName="
-				+ mdAccName + ", tagNames=" + tagNames + "]";
+				+ ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags + ", inquiryTittle=" + inquiryTittle
+				+ ", inqCompany=" + inqCompany + ", inqWebsite=" + inqWebsite + ", inqTurnover=" + inqTurnover
+				+ ", inqEmpCount=" + inqEmpCount + ", inqScaleDesc=" + inqScaleDesc + ", inqAtsRating=" + inqAtsRating
+				+ ", inqCompanyLandline=" + inqCompanyLandline + ", inqStatus=" + inqStatus + ", inqRemark=" + inqRemark
+				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1="
+				+ exVar1 + ", exVar2=" + exVar2 + ", inqDetailList=" + inqDetailList + ", channelName=" + channelName
+				+ ", mdAccName=" + mdAccName + ", tagNames=" + tagNames + "]";
 	}
+
 
 
 	

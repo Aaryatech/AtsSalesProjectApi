@@ -29,6 +29,8 @@ public class InquiryHeader {
 	
 	private String inqTags;
 	
+	private String inquiryTittle;
+	
 	private String inqCompany;
 	
 	private String inqWebsite;
@@ -276,20 +278,30 @@ public class InquiryHeader {
 		this.mdAccTypeId = mdAccTypeId;
 	}
 
+	public String getInquiryTittle() {
+		return inquiryTittle;
+	}
+
+	public void setInquiryTittle(String inquiryTittle) {
+		this.inquiryTittle = inquiryTittle;
+	}
+
 	@Override
 	public String toString() {
 		return "InquiryHeader [inqId=" + inqId + ", channelId=" + channelId + ", mdAccTypeId=" + mdAccTypeId
 				+ ", pmCode=" + pmCode + ", inqRefCode=" + inqRefCode + ", inqDomainId=" + inqDomainId
-				+ ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags + ", inqCompany=" + inqCompany
-				+ ", inqWebsite=" + inqWebsite + ", inqTurnover=" + inqTurnover + ", inqEmpCount=" + inqEmpCount
-				+ ", inqScaleDesc=" + inqScaleDesc + ", inqAtsRating=" + inqAtsRating + ", inqCompanyLandline="
-				+ inqCompanyLandline + ", inqStatus=" + inqStatus + ", inqRemark=" + inqRemark + ", delStatus="
-				+ delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime="
-				+ makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
-				+ exVar2 + ", inqDetailList=" + inqDetailList + "]";
+				+ ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags + ", inquiryTittle=" + inquiryTittle
+				+ ", inqCompany=" + inqCompany + ", inqWebsite=" + inqWebsite + ", inqTurnover=" + inqTurnover
+				+ ", inqEmpCount=" + inqEmpCount + ", inqScaleDesc=" + inqScaleDesc + ", inqAtsRating=" + inqAtsRating
+				+ ", inqCompanyLandline=" + inqCompanyLandline + ", inqStatus=" + inqStatus + ", inqRemark=" + inqRemark
+				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1="
+				+ exVar1 + ", exVar2=" + exVar2 + ", inqDetailList=" + inqDetailList + "]";
 	}
 
-
+	
+	
+	
 	
 	
 	
