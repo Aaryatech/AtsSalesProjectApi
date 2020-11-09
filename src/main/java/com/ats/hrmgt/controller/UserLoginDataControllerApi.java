@@ -66,7 +66,7 @@ public class UserLoginDataControllerApi {
 	}
 
 	
-	@RequestMapping(value="/resetPassword",method=RequestMethod.POST)
+	@RequestMapping(value="/resetPassword",method=RequestMethod.POST )
 	public @ResponseBody Info resetPassword(@RequestParam int empId,@RequestParam String passWord) {
 	Info info=new Info();
 	int flag=0;
