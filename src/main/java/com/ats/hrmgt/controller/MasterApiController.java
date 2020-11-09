@@ -1,6 +1,8 @@
 package com.ats.hrmgt.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.CustInfo;
+import com.ats.hrmgt.model.DashBoardSummary;
 import com.ats.hrmgt.model.Employee;
 import com.ats.hrmgt.model.Info;
 import com.ats.hrmgt.model.InquiryDetail;
@@ -28,6 +31,7 @@ import com.ats.hrmgt.model.TaskDetailsEmpName;
 import com.ats.hrmgt.model.TaskStatus;
 import com.ats.hrmgt.repository.ChannelRepository;
 import com.ats.hrmgt.repository.CustInfoRepo;
+import com.ats.hrmgt.repository.DashBoardSummaryRepo;
 import com.ats.hrmgt.repository.EmployeeRepository;
 import com.ats.hrmgt.repository.InquiryDetailRepository;
 import com.ats.hrmgt.repository.InquiryHeaderRepository;
@@ -85,6 +89,9 @@ public class MasterApiController {
 
 	@Autowired
 	CustInfoRepo custInfoRepo;
+
+	@Autowired
+	DashBoardSummaryRepo dashBoardSummaryRepo;
 
 	// To Fetch All Tags By m_acc_type_id Where del_status & is_active Status is
 	// True
@@ -605,7 +612,6 @@ public class MasterApiController {
 
 		try {
 
-			
 			if (type == 1) {
 				custInfo = custInfoRepo.getCustInfoLms(primaryKey);
 			} else if (type == 2) {
@@ -618,6 +624,26 @@ public class MasterApiController {
 			// TODO: handle exception
 		}
 		return custInfo;
+
+	}
+
+	@RequestMapping(value = "/getRegularDashboardSummry", method = RequestMethod.POST)
+	public @ResponseBody DashBoardSummary getRegularDashboardSummry(@RequestParam("empId") int empId) {
+		DashBoardSummary dashBoardSummary = new DashBoardSummary();
+
+		try {
+
+			Date dt = new Date();
+			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+
+			dashBoardSummary = dashBoardSummaryRepo.getRegularDashboardSummry(empId, sf.format(dt));
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		return dashBoardSummary;
 
 	}
 
