@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.ats.hrmgt.model.Employee;
 
-public interface EmployeeRepository   extends JpaRepository<Employee, Integer>{
+public interface EmployeeRepository  extends JpaRepository<Employee, Integer>{
 	
 	
 	//To Fetch All Records From m_employee Where del_status And is_active Is True

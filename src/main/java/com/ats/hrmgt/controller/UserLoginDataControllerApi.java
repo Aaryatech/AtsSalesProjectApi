@@ -27,6 +27,7 @@ public class UserLoginDataControllerApi {
 	@Autowired
 	UserLoginDataRepository userLoginRepo;
 	
+	
 	@Autowired	
 	EmployeeRepository empRepo;
 	
