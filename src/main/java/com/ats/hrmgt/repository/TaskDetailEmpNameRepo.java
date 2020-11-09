@@ -89,7 +89,7 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        AND t.is_active=1          \n" + 
 			"        and FIND_IN_SET(:empId, t.task_alloted_to) \n" + 
 			"        and t.md_acc_type_id=acc.md_acc_type_id \n" + 
-			"        and t.this_task_status=0",nativeQuery=true)
+			"        and t.this_task_status=0 order by t.task_sche_time",nativeQuery=true)
 	List<TaskDetailsEmpName> getTaskDetailWithEmpNameByEmpid(@Param("empId") int empId);
 	
 	
