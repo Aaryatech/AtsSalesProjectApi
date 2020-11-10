@@ -25,6 +25,10 @@ public class LmsHeaderWithNames {
 	
 	private int accDomainId;
 	
+	private int mStateId;
+	
+	private int mCityId;
+	
 	private String customerName;
 	
 	private String accDomainOther;
@@ -387,19 +391,41 @@ public class LmsHeaderWithNames {
 	}
 
 
+	public int getmStateId() {
+		return mStateId;
+	}
+
+
+	public void setmStateId(int mStateId) {
+		this.mStateId = mStateId;
+	}
+
+
+	public int getmCityId() {
+		return mCityId;
+	}
+
+
+	public void setmCityId(int mCityId) {
+		this.mCityId = mCityId;
+	}
+
+
 	@Override
 	public String toString() {
 		return "LmsHeaderWithNames [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId=" + channelId
-				+ ", accCode=" + accCode + ", accRefCode=" + accRefCode + ", accDomainId=" + accDomainId
-				+ ", customerName=" + customerName + ", accDomainOther=" + accDomainOther + ", accTags=" + accTags
-				+ ", accCompany=" + accCompany + ", accWebsite=" + accWebsite + ", accTurnover=" + accTurnover
-				+ ", accEmpCount=" + accEmpCount + ", accScaleDesc=" + accScaleDesc + ", accAtsRating=" + accAtsRating
-				+ ", accCompanyLandline=" + accCompanyLandline + ", accStatus=" + accStatus + ", accRemark=" + accRemark
-				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
-				+ ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1="
-				+ exVar1 + ", exVar2=" + exVar2 + ", accountType=" + accountType + ", channelName=" + channelName
-				+ ", tagNames=" + tagNames + ", cpInfo=" + cpInfo + ", lmsDetailList=" + lmsDetailList + "]";
+				+ ", accCode=" + accCode + ", accRefCode=" + accRefCode + ", accDomainId=" + accDomainId + ", mStateId="
+				+ mStateId + ", mCityId=" + mCityId + ", customerName=" + customerName + ", accDomainOther="
+				+ accDomainOther + ", accTags=" + accTags + ", accCompany=" + accCompany + ", accWebsite=" + accWebsite
+				+ ", accTurnover=" + accTurnover + ", accEmpCount=" + accEmpCount + ", accScaleDesc=" + accScaleDesc
+				+ ", accAtsRating=" + accAtsRating + ", accCompanyLandline=" + accCompanyLandline + ", accStatus="
+				+ accStatus + ", accRemark=" + accRemark + ", delStatus=" + delStatus + ", isActive=" + isActive
+				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1
+				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", accountType=" + accountType
+				+ ", channelName=" + channelName + ", tagNames=" + tagNames + ", cpInfo=" + cpInfo + ", lmsDetailList="
+				+ lmsDetailList + "]";
 	}
+
 
 
 
