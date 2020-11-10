@@ -144,4 +144,34 @@ public class AdminDashboardApiController {
 		return list;
 
 	}
+
+	@RequestMapping(value = "/getTaskByStatusWiseList", method = RequestMethod.POST)
+	public @ResponseBody GetTaskByModuleWise getTaskByStatusWiseList(@RequestParam int moduleId,
+			@RequestParam int status) {
+		GetTaskByModuleWise getTaskByModuleWise = new GetTaskByModuleWise();
+
+		try {
+
+			Date dt = new Date();
+			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+
+			List<TaskDetailsEmpName> unallocatedList = new ArrayList<>();
+
+			if (status == 0) {
+				unallocatedList = taskDetailEmpRepo.getTaskByStatusWiseList(moduleId);
+
+			} else {
+				unallocatedList = taskDetailEmpRepo.getTaskByStatusWiseList(moduleId, status);
+
+			}
+
+			getTaskByModuleWise.setUnallocatedList(unallocatedList);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		return getTaskByModuleWise;
+
+	}
 }
