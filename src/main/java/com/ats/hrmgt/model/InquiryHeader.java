@@ -25,6 +25,10 @@ public class InquiryHeader {
 	
 	private int inqDomainId;
 	
+	private int mStateId;
+	
+	private int mCityId;
+	
 	private String inqDomainOther;
 	
 	private String inqTags;
@@ -62,6 +66,8 @@ public class InquiryHeader {
 	private int exInt1,exInt2;
 	
 	private String exVar1,exVar2;
+	
+
 	
 	
 	@Transient
@@ -286,18 +292,40 @@ public class InquiryHeader {
 		this.inquiryTittle = inquiryTittle;
 	}
 
+	public int getmStateId() {
+		return mStateId;
+	}
+
+	public void setmStateId(int mStateId) {
+		this.mStateId = mStateId;
+	}
+
+	public int getmCityId() {
+		return mCityId;
+	}
+
+	public void setmCityId(int mCityId) {
+		this.mCityId = mCityId;
+	}
+
 	@Override
 	public String toString() {
 		return "InquiryHeader [inqId=" + inqId + ", channelId=" + channelId + ", mdAccTypeId=" + mdAccTypeId
-				+ ", pmCode=" + pmCode + ", inqRefCode=" + inqRefCode + ", inqDomainId=" + inqDomainId
-				+ ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags + ", inquiryTittle=" + inquiryTittle
-				+ ", inqCompany=" + inqCompany + ", inqWebsite=" + inqWebsite + ", inqTurnover=" + inqTurnover
-				+ ", inqEmpCount=" + inqEmpCount + ", inqScaleDesc=" + inqScaleDesc + ", inqAtsRating=" + inqAtsRating
-				+ ", inqCompanyLandline=" + inqCompanyLandline + ", inqStatus=" + inqStatus + ", inqRemark=" + inqRemark
-				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
-				+ ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1="
-				+ exVar1 + ", exVar2=" + exVar2 + ", inqDetailList=" + inqDetailList + "]";
+				+ ", pmCode=" + pmCode + ", inqRefCode=" + inqRefCode + ", inqDomainId=" + inqDomainId + ", mStateId="
+				+ mStateId + ", mCityId=" + mCityId + ", inqDomainOther=" + inqDomainOther + ", inqTags=" + inqTags
+				+ ", inquiryTittle=" + inquiryTittle + ", inqCompany=" + inqCompany + ", inqWebsite=" + inqWebsite
+				+ ", inqTurnover=" + inqTurnover + ", inqEmpCount=" + inqEmpCount + ", inqScaleDesc=" + inqScaleDesc
+				+ ", inqAtsRating=" + inqAtsRating + ", inqCompanyLandline=" + inqCompanyLandline + ", inqStatus="
+				+ inqStatus + ", inqRemark=" + inqRemark + ", delStatus=" + delStatus + ", isActive=" + isActive
+				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1
+				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", inqDetailList="
+				+ inqDetailList + "]";
 	}
+
+
+
+
+
 
 	
 	

@@ -82,6 +82,8 @@ public class LmsHeaderWithNamesAndCustDetail {
 	
 	private String cpInfo2;
 	
+	private String cityState;
+	
 	
 	@Transient
 	private List<LmsDetail> lmsDetailList;
@@ -437,6 +439,16 @@ public class LmsHeaderWithNamesAndCustDetail {
 	}
 
 
+	public String getCityState() {
+		return cityState;
+	}
+
+
+	public void setCityState(String cityState) {
+		this.cityState = cityState;
+	}
+
+
 	@Override
 	public String toString() {
 		return "LmsHeaderWithNamesAndCustDetail [lmsId=" + lmsId + ", mdAccTypeId=" + mdAccTypeId + ", channelId="
@@ -449,10 +461,12 @@ public class LmsHeaderWithNamesAndCustDetail {
 				+ delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime="
 				+ makerDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
 				+ exVar2 + ", accountType=" + accountType + ", channelName=" + channelName + ", tagNames=" + tagNames
-				+ ", cpInfo=" + cpInfo + ", cpContact=" + cpContact + ", cpInfo2=" + cpInfo2 + ", lmsDetailList="
-				+ lmsDetailList + "]";
+				+ ", cpInfo=" + cpInfo + ", cpContact=" + cpContact + ", cpInfo2=" + cpInfo2 + ", cityState="
+				+ cityState + ", lmsDetailList=" + lmsDetailList + "]";
 	}
 
+
+	
 
 	
 	
