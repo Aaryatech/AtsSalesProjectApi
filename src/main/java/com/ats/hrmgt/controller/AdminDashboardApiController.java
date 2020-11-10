@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ats.hrmgt.model.EmpTaskStatusCount;
+import com.ats.hrmgt.model.EmployeeTaskDashBoard;
 import com.ats.hrmgt.model.EmployeeWiseDashboard;
 import com.ats.hrmgt.model.GetTaskByModuleWise;
 import com.ats.hrmgt.model.ModeludeWiseDashboard;
 import com.ats.hrmgt.model.TaskDetailsEmpName;
+import com.ats.hrmgt.repository.EmpTaskStatusCountRepo;
+import com.ats.hrmgt.repository.EmployeeTaskDashBoardRepo;
 import com.ats.hrmgt.repository.EmployeeWiseDashboardRepo;
 import com.ats.hrmgt.repository.ModeludeWiseDashboardRepo;
 import com.ats.hrmgt.repository.TaskDetailEmpNameRepo;
@@ -31,6 +35,12 @@ public class AdminDashboardApiController {
 
 	@Autowired
 	TaskDetailEmpNameRepo taskDetailEmpRepo;
+
+	@Autowired
+	EmployeeTaskDashBoardRepo employeeTaskDashBoardRepo;
+
+	@Autowired
+	EmpTaskStatusCountRepo empTaskStatusCountRepo;
 
 	@RequestMapping(value = "/getEmployeeWiseDashboardList", method = RequestMethod.GET)
 	public @ResponseBody List<EmployeeWiseDashboard> getEmployeeWiseDashboardList() {
@@ -74,11 +84,26 @@ public class AdminDashboardApiController {
 
 			Date dt = new Date();
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-			List<TaskDetailsEmpName> unallocatedList = taskDetailEmpRepo.unallocatedList(moduleId);
-			List<TaskDetailsEmpName> allocatedList = taskDetailEmpRepo.allocatedList(moduleId);
-			List<TaskDetailsEmpName> pendingList = taskDetailEmpRepo.pendingList(moduleId);
-			List<TaskDetailsEmpName> remainingList = taskDetailEmpRepo.remainingList(moduleId);
-			List<TaskDetailsEmpName> completedList = taskDetailEmpRepo.completedList(moduleId, sf.format(dt));
+
+			List<TaskDetailsEmpName> unallocatedList = new ArrayList<>();
+			List<TaskDetailsEmpName> allocatedList = new ArrayList<>();
+			List<TaskDetailsEmpName> pendingList = new ArrayList<>();
+			List<TaskDetailsEmpName> remainingList = new ArrayList<>();
+			List<TaskDetailsEmpName> completedList = new ArrayList<>();
+
+			if (moduleId == 0) {
+				unallocatedList = taskDetailEmpRepo.unallocatedListAll();
+				allocatedList = taskDetailEmpRepo.allocatedListAll();
+				pendingList = taskDetailEmpRepo.pendingListAll();
+				remainingList = taskDetailEmpRepo.remainingListAll();
+				completedList = taskDetailEmpRepo.completedListAll(sf.format(dt));
+			} else {
+				unallocatedList = taskDetailEmpRepo.unallocatedList(moduleId);
+				allocatedList = taskDetailEmpRepo.allocatedList(moduleId);
+				pendingList = taskDetailEmpRepo.pendingList(moduleId);
+				remainingList = taskDetailEmpRepo.remainingList(moduleId);
+				completedList = taskDetailEmpRepo.completedList(moduleId, sf.format(dt));
+			}
 
 			ModeludeWiseDashboard modeludeWiseDashboard = modeludeWiseDashboardRepo
 					.modulewiseTaskDashboard(sf.format(dt));
@@ -95,6 +120,28 @@ public class AdminDashboardApiController {
 			// TODO: handle exception
 		}
 		return getTaskByModuleWise;
+
+	}
+
+	@RequestMapping(value = "/employeewiseTaskwiseList", method = RequestMethod.POST)
+	public @ResponseBody List<EmployeeTaskDashBoard> employeewiseTaskwiseList(@RequestParam("moduleId") int moduleId) {
+		List<EmployeeTaskDashBoard> list = new ArrayList<>();
+
+		try {
+
+			list = employeeTaskDashBoardRepo.employeewiseTaskwiseList();
+
+			for (int i = 0; i < list.size(); i++) {
+				List<EmpTaskStatusCount> empTaskStatusWiseDetail = empTaskStatusCountRepo
+						.getempTaskStatusWiseDetail(list.get(i).getEmpId(), moduleId);
+				list.get(i).setEmpTaskStatusWiseDetailList(empTaskStatusWiseDetail);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
 
 	}
 }
