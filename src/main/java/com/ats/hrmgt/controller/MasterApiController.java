@@ -544,11 +544,13 @@ public class MasterApiController {
 		try {
 
 			inqHeadResp = inquiryHeadWithNames.getAllInquiryHeaderWithName();
-			for (InquiryHeaderWithNames header : inqHeadResp) {
-				inqDetailResp = inquiryDetailRepo.getInqDeatilById(header.getInqId());
-				header.setInqDetailList(inqDetailResp);
-
-			}
+			/*
+			 * for (InquiryHeaderWithNames header : inqHeadResp) { inqDetailResp =
+			 * inquiryDetailRepo.getInqDeatilById(header.getInqId());
+			 * header.setInqDetailList(inqDetailResp);
+			 * 
+			 * }
+			 */
 
 			System.err.println("Response From /getAllInquiryHeaderWithName =" + "\t" + inqHeadResp);
 
@@ -567,15 +569,18 @@ public class MasterApiController {
 	@RequestMapping(value = "/getInqHeaderWithNameById", method = RequestMethod.POST)
 	public @ResponseBody InquiryHeaderWithNames getInqHeaderWithNameById(@RequestParam int inqId) {
 		InquiryHeaderWithNames inqHeadResp = new InquiryHeaderWithNames();
-		List<InquiryDetail> inqDetailList = new ArrayList<InquiryDetail>();
+		//List<InquiryDetail> inqDetailList = new ArrayList<InquiryDetail>();
 
 		try {
 
-			inqDetailList = inquiryDetailRepo.getInqDeatilById(inqId);
-			System.err.println("inqDetailLis" + inqDetailList);
+			//inqDetailList = inquiryDetailRepo.getInqDeatilById(inqId);
+			//System.err.println("inqDetailLis" + inqDetailList); 
 			inqHeadResp = inquiryHeadWithNames.getInqHeaderWithNameById(inqId);
+			if(inqHeadResp==null) {
+				inqHeadResp=new InquiryHeaderWithNames();
+			}
 			// System.err.println("Before Add inqDEtailLsit"+inqHeadResp);
-			inqHeadResp.setInqDetailList(inqDetailList);
+			//inqHeadResp.setInqDetailList(inqDetailList);
 			System.err.println("Response From /getInqHeaderWithNameById =" + "\t" + inqHeadResp);
 		} catch (Exception e) {
 			// TODO: handle exception

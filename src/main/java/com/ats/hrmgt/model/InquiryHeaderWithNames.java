@@ -81,8 +81,23 @@ public class InquiryHeaderWithNames {
 	
 	private String tagNames;
 	
+	private String cpInfo;
+	
+	
+	
+	
+	
+	
 	
 
+
+	public String getCpInfo() {
+		return cpInfo;
+	}
+
+	public void setCpInfo(String cpInfo) {
+		this.cpInfo = cpInfo;
+	}
 
 	public int getInqId() {
 		return inqId;
@@ -354,7 +369,7 @@ public class InquiryHeaderWithNames {
 				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", exInt1=" + exInt1
 				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", inqDetailList="
 				+ inqDetailList + ", channelName=" + channelName + ", mdAccName=" + mdAccName + ", tagNames=" + tagNames
-				+ "]";
+				+ ", cpInfo=" + cpInfo + "]";
 	}
 
 	
