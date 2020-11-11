@@ -796,7 +796,7 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        t.del_status=1                   \n" + 
 			"        AND t.is_active=1          \n" + 
 			"        and t.md_acc_type_id=acc.md_acc_type_id          \n" + 
-			"        and t.this_task_status=0 and DATE_FORMAT(t.task_done_date, '%Y-%m-%d')=:date\n" + 
+			"        and t.this_task_status=1 and DATE_FORMAT(t.task_done_date, '%Y-%m-%d')=:date\n" + 
 			"    order by\n" + 
 			"        t.task_sche_time",nativeQuery=true)
 	List<TaskDetailsEmpName> completedListAll(String date);
