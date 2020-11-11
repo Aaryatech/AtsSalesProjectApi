@@ -15,7 +15,7 @@ import com.ats.hrmgt.repository.AccountTypeRepository;
 @RestController
 public class AccountTypeControllerApi {
 
-	@Autowired
+	@Autowired 
 	AccountTypeRepository AccTypeRepo;
 	
 	
