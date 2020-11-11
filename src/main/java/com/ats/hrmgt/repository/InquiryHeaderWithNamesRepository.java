@@ -41,7 +41,7 @@ public interface InquiryHeaderWithNamesRepository  extends JpaRepository<Inquiry
 			"    GROUP BY\n" + 
 			"        inquiry_header.inq_id",nativeQuery=true)
 	List<InquiryHeaderWithNames> getAllInquiryHeaderWithName();
-	
+	 
 	
 	//To Fetch Single Inquiry Header With Channel Name And Tag Names Using inq_id
 	@Query(value="SELECT\n" + 
