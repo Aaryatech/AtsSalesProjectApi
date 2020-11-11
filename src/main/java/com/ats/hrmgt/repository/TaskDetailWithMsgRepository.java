@@ -15,13 +15,13 @@ public interface TaskDetailWithMsgRepository  extends JpaRepository<TaskDetailsW
 	//To Fetch Records With Client Profiling AS Message By pri_key And md_acc_type_id 
 	@Query(value="SELECT\n" + 
 			"        task_details.task_id,\n" + 
-			"        task_details.task_done_date,\n" + 
+			"        task_details.maker_datetime as task_done_date,\n" + 
 			"        (Select\n" + 
 			"            m_employee.emp_name \n" + 
 			"        FROM\n" + 
 			"            m_employee \n" + 
 			"        WHERE\n" + 
-			"            m_employee.emp_id=task_details.task_done_by) as emp_name,\n" + 
+			"            m_employee.emp_id=task_details.maker_user_id) as emp_name,\n" + 
 			"        task_details.task_client_profiling AS message \n" + 
 			"    FROM\n" + 
 			"        task_details \n" + 
@@ -36,8 +36,8 @@ public interface TaskDetailWithMsgRepository  extends JpaRepository<TaskDetailsW
 	//To Fetch Records With Client Questions AS Message By pri_key And md_acc_type_id
 	@Query(value="SELECT\n" + 
 			"   task_details.task_id,\n" + 
-			"   task_details.task_done_date,\n" + 
-			"   (Select m_employee.emp_name FROM m_employee WHERE m_employee.emp_id=task_details.task_done_by) as emp_name,\n" + 
+			"   task_details.maker_datetime as task_done_date,\n" + 
+			"   (Select m_employee.emp_name FROM m_employee WHERE m_employee.emp_id=task_details.maker_user_id) as emp_name,\n" + 
 			"    task_details.task_though_questions AS message\n" + 
 			"FROM\n" + 
 			"    task_details\n" + 
@@ -56,8 +56,8 @@ public interface TaskDetailWithMsgRepository  extends JpaRepository<TaskDetailsW
 	//To Fetch Records With  What Went Wrong AS Message By pri_key And md_acc_type_id
 	@Query(value="SELECT\n" + 
 			"   task_details.task_id,\n" + 
-			"   task_details.task_done_date,\n" + 
-			"   (Select m_employee.emp_name FROM m_employee WHERE m_employee.emp_id=task_details.task_done_by) as emp_name,\n" + 
+			"   task_details.maker_datetime as task_done_date,\n" + 
+			"   (Select m_employee.emp_name FROM m_employee WHERE m_employee.emp_id=task_details.maker_user_id) as emp_name,\n" + 
 			"    task_details.task_what_went_wrong AS message\n" + 
 			"FROM\n" + 
 			"    task_details\n" + 
