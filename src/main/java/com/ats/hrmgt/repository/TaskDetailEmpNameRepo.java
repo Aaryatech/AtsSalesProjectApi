@@ -20,7 +20,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time) as day,\n" + 
 			"        TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24 AS hour,\n" + 
 			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,"
-			+ "acc.md_acc_type_text,(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed\n" + 
+			+ "acc.md_acc_type_text,(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id\n" + 
 			"FROM\n" + 
 			"    task_details t,\n" + 
 			"    m_employee emp,md_acc_type acc\n" + 
@@ -80,7 +95,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1 \n" + 
 			"            and t.pri_key=task_details.pri_key \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id \n" + 
-			"            and task_details.this_task_status=1) as completed     \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id     \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc      \n" + 
@@ -104,7 +134,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time) as day,\n" + 
 			"        TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)-TIMESTAMPDIFF(DAY,NOW(),t.task_sche_time)*24 AS hour,\n" + 
 			"        TIMESTAMPDIFF(MINUTE,NOW(),t.task_sche_time)-TIMESTAMPDIFF(HOUR,NOW(),t.task_sche_time)*60 AS minutes,acc.md_acc_type_text,"
-			+ "(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed \n" + 
+			+ "(SELECT count('') FROM task_details WHERE task_details.del_status=1  AND task_details.is_active=1 and t.pri_key=task_details.pri_key and t.md_acc_type_id=task_details.md_acc_type_id and task_details.this_task_status=1) as completed,"
+			+ " ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id \n" + 
 			"FROM\n" + 
 			"    task_details t,\n" + 
 			"    m_employee emp,md_acc_type acc\n" + 
@@ -116,7 +161,7 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 
 	@Query(value="SELECT\n" + 
 			"        a.*,\n" + 
-			"        b.emp_name as employee_name \n" + 
+			"        b.emp_name as employee_name,0 as domain_id,0 as m_state_id,0 as m_city_id \n" + 
 			"    from\n" + 
 			"        (SELECT\n" + 
 			"            t.*,\n" + 
@@ -196,7 +241,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id         \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -261,7 +321,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -325,7 +400,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -394,7 +484,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id         \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -464,7 +569,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -529,7 +649,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -592,7 +727,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -654,7 +804,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -721,7 +886,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed ,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id         \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -788,7 +968,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -851,7 +1046,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 
@@ -916,7 +1126,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            AND task_details.is_active=1              \n" + 
 			"            and t.pri_key=task_details.pri_key              \n" + 
 			"            and t.md_acc_type_id=task_details.md_acc_type_id              \n" + 
-			"            and task_details.this_task_status=1) as completed          \n" + 
+			"            and task_details.this_task_status=1) as completed,"
+			+ "ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select acc_domain_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select inq_domain_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as domain_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_state_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_state_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_state_id,\n" + 
+			"        ifnull(case                           \n" + 
+			"            when t.md_acc_type_id=1 then (select m_city_id from lms_header where lms_id=t.pri_key)\n" + 
+			"            when t.md_acc_type_id=2 then (select m_city_id from inquiry_header where inq_id=t.pri_key)\n" + 
+			"            else 0                             \n" + 
+			"        end,0)  as m_city_id          \n" + 
 			"    FROM\n" + 
 			"        task_details t,\n" + 
 			"        md_acc_type acc           \n" + 

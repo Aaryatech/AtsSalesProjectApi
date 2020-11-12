@@ -57,6 +57,10 @@ public class TaskDetailsEmpName {
 	private Date taskDoneDate;
 
 	private int taskDoneBy;
+	
+	private int domainId;
+	private int mStateId;
+	private int mCityId;
 
 	public int getTaskDoneBy() {
 		return taskDoneBy;
@@ -430,6 +434,30 @@ public class TaskDetailsEmpName {
 		this.time = time;
 	}
 
+	public int getDomainId() {
+		return domainId;
+	}
+
+	public void setDomainId(int domainId) {
+		this.domainId = domainId;
+	}
+
+	public int getmStateId() {
+		return mStateId;
+	}
+
+	public void setmStateId(int mStateId) {
+		this.mStateId = mStateId;
+	}
+
+	public int getmCityId() {
+		return mCityId;
+	}
+
+	public void setmCityId(int mCityId) {
+		this.mCityId = mCityId;
+	}
+
 	@Override
 	public String toString() {
 		return "TaskDetailsEmpName [taskId=" + taskId + ", mdAccTypeId=" + mdAccTypeId + ", priKey=" + priKey
@@ -441,7 +469,8 @@ public class TaskDetailsEmpName {
 				+ ", taskThoughQuestions=" + taskThoughQuestions + ", taskWhatWentWrong=" + taskWhatWentWrong
 				+ ", thisTaskStatus=" + thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority="
 				+ taskPriority + ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy="
-				+ taskDoneBy + ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ taskDoneBy + ", domainId=" + domainId + ", mStateId=" + mStateId + ", mCityId=" + mCityId
+				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
 				+ ", makerDatetime=" + makerDatetime + ", allocatedById=" + allocatedById + ", allocatedDatetime="
 				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
 				+ exVar2 + ", employeeName=" + employeeName + ", sts=" + sts + ", day=" + day + ", hour=" + hour
