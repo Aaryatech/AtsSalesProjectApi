@@ -18,6 +18,10 @@ public interface StateRepository extends JpaRepository<States, Integer> {
 	//To Fetch Single State By m_state_id And Where  del_status And is_active =1
 	@Query(value="SELECT * FROM m_states WHERE del_status=1 AND is_active=1 AND m_state_id=:stateId",nativeQuery=true)
 	States getStateById(@Param("stateId") int stateId);
+
+
+	@Query(value="SELECT * FROM m_states WHERE m_state_name=:stateName",nativeQuery=true)
+	States findByStateName(String stateName);
 	
 	
 	

@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.CustInfo;
 import com.ats.hrmgt.model.DashBoardSummary;
+import com.ats.hrmgt.model.Designation;
 import com.ats.hrmgt.model.Employee;
 import com.ats.hrmgt.model.Info;
 import com.ats.hrmgt.model.InquiryDetail;
@@ -25,6 +27,7 @@ import com.ats.hrmgt.model.InquiryHeaderWithNames;
 import com.ats.hrmgt.model.LmsDetail;
 import com.ats.hrmgt.model.LmsHeader;
 import com.ats.hrmgt.model.LmsHeaderWithNames;
+import com.ats.hrmgt.model.States;
 import com.ats.hrmgt.model.Tags;
 import com.ats.hrmgt.model.TaskDetails;
 import com.ats.hrmgt.model.TaskDetailsEmpName;
@@ -32,6 +35,7 @@ import com.ats.hrmgt.model.TaskStatus;
 import com.ats.hrmgt.repository.ChannelRepository;
 import com.ats.hrmgt.repository.CustInfoRepo;
 import com.ats.hrmgt.repository.DashBoardSummaryRepo;
+import com.ats.hrmgt.repository.DesignationRepository;
 import com.ats.hrmgt.repository.EmployeeRepository;
 import com.ats.hrmgt.repository.InquiryDetailRepository;
 import com.ats.hrmgt.repository.InquiryHeaderRepository;
@@ -199,6 +203,42 @@ public class MasterApiController {
 		}
 
 		return allChannelList;
+
+	}
+
+	@RequestMapping(value = "/getChannelBychanelname", method = RequestMethod.POST)
+	public @ResponseBody Channel getChannelBychanelname(@Param("channelName") String channelName) {
+		Channel channel = new Channel();
+
+		try {
+			channel = channelRepo.findByChannelName(channelName);
+
+			if (channel == null) {
+				channel = new Channel();
+			}
+
+		} catch (Exception e) {
+			channel = new Channel();
+			e.printStackTrace();
+		}
+
+		return channel;
+
+	}
+
+	@RequestMapping(value = "/saveChannel", method = RequestMethod.POST)
+	public @ResponseBody Channel saveChannel(@RequestBody Channel channel) {
+		Channel res = new Channel();
+
+		try {
+			res = channelRepo.save(channel);
+
+		} catch (Exception e) {
+			channel = new Channel();
+			e.printStackTrace();
+		}
+
+		return res;
 
 	}
 
@@ -443,11 +483,11 @@ public class MasterApiController {
 			 * lmsDEtailList=lmsDetailRepo.getLmsDetailByLmsId(header.getLmsId());
 			 * header.setLmsDetailList(lmsDEtailList); }
 			 */
-			System.err.println("Response Of /getListOfAllLmsHeader Is" + "\t" + AllLmsHeaderList);
+			//System.err.println("Response Of /getListOfAllLmsHeader Is" + "\t" + AllLmsHeaderList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			AllLmsHeaderList = new ArrayList<LmsHeaderWithNames>();
-			System.err.println("Exception Occuered!!! In Catch Block /getListOfAllLmsHeader Mapping");
+			//System.err.println("Exception Occuered!!! In Catch Block /getListOfAllLmsHeader Mapping");
 			e.printStackTrace();
 		}
 
@@ -569,18 +609,18 @@ public class MasterApiController {
 	@RequestMapping(value = "/getInqHeaderWithNameById", method = RequestMethod.POST)
 	public @ResponseBody InquiryHeaderWithNames getInqHeaderWithNameById(@RequestParam int inqId) {
 		InquiryHeaderWithNames inqHeadResp = new InquiryHeaderWithNames();
-		//List<InquiryDetail> inqDetailList = new ArrayList<InquiryDetail>();
+		// List<InquiryDetail> inqDetailList = new ArrayList<InquiryDetail>();
 
 		try {
 
-			//inqDetailList = inquiryDetailRepo.getInqDeatilById(inqId);
-			//System.err.println("inqDetailLis" + inqDetailList); 
+			// inqDetailList = inquiryDetailRepo.getInqDeatilById(inqId);
+			// System.err.println("inqDetailLis" + inqDetailList);
 			inqHeadResp = inquiryHeadWithNames.getInqHeaderWithNameById(inqId);
-			if(inqHeadResp==null) {
-				inqHeadResp=new InquiryHeaderWithNames();
+			if (inqHeadResp == null) {
+				inqHeadResp = new InquiryHeaderWithNames();
 			}
 			// System.err.println("Before Add inqDEtailLsit"+inqHeadResp);
-			//inqHeadResp.setInqDetailList(inqDetailList);
+			// inqHeadResp.setInqDetailList(inqDetailList);
 			System.err.println("Response From /getInqHeaderWithNameById =" + "\t" + inqHeadResp);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -650,6 +690,45 @@ public class MasterApiController {
 		}
 		return dashBoardSummary;
 
+	}
+
+	@Autowired
+	DesignationRepository designationRepo;
+
+	@RequestMapping(value = "/getDesignationBydesName", method = RequestMethod.POST)
+	public @ResponseBody Designation getDesignationBydesName(@RequestParam String desigName) {
+		Designation allDesignationList = new Designation();
+
+		try {
+			allDesignationList = designationRepo.getDesignationBydesName(desigName);
+
+			if (allDesignationList == null) {
+				allDesignationList = new Designation();
+			}
+
+		} catch (Exception e) {
+			allDesignationList = new Designation();
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+		return allDesignationList;
+	}
+
+	@RequestMapping(value = "/savedesignation", method = RequestMethod.POST)
+	public @ResponseBody Designation savedesignation(@RequestBody Designation designation) {
+		Designation allDesignationList = new Designation();
+
+		try {
+			allDesignationList = designationRepo.save(designation);
+
+		} catch (Exception e) {
+			allDesignationList = new Designation();
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+		return allDesignationList;
 	}
 
 }

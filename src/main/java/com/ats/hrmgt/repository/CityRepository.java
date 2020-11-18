@@ -25,6 +25,9 @@ public interface CityRepository  extends JpaRepository<City, Integer>{
 	//To Fetch List Of Cities Using State Id
 	@Query(value="SELECT * FROM m_city WHERE del_status=1 AND is_active=1 AND m_state_id=:stateId",nativeQuery=true)
 	List<City> getCitiesByStateId(@Param("stateId") int stateId);
+
+	@Query(value="SELECT * FROM m_city WHERE m_city_name=:cityName",nativeQuery=true)
+	City getCitiesByCityName(String cityName);
 	
 
 }

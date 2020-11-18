@@ -13,6 +13,9 @@ public interface DesignationRepository 	extends JpaRepository<Designation, Integ
 	//To Fetch All Records From designation Where del_staus And is_active is TRUE
 	@Query(value="SELECT * FROM  m_designation WHERE del_status=true AND is_active=true",nativeQuery=true)
 	List<Designation> getAllDesignation();
+
+	@Query(value="SELECT * FROM  m_designation WHERE m_designation_name=:desigName",nativeQuery=true)
+	Designation getDesignationBydesName(String desigName);
 	
 	
 	

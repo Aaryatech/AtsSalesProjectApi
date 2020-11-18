@@ -24,7 +24,7 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 			"        FROM\n" + 
 			"            m_tags     \n" + 
 			"        WHERE\n" + 
-			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names,'' as cp_info        \n" + 
+			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names,'' as cp_info,'' as mail       \n" + 
 			"    FROM\n" + 
 			"        lms_header,\n" + 
 			"        m_channel        \n" + 
@@ -58,7 +58,7 @@ public interface LmsHeaderWithNamesRepository  extends JpaRepository<LmsHeaderWi
 			"            m_tags     \n" + 
 			"        WHERE\n" + 
 			"            FIND_IN_SET(m_tags.m_tag_id, lms_header.acc_tags)    ) AS tag_names,\n" + 
-			"        concat(lms_detail.cp_name,', ',m_designation.m_designation_name,', ',lms_detail.cp_mobile) as cp_info\n" + 
+			"        concat(lms_detail.cp_name,', ',m_designation.m_designation_name,', ',lms_detail.cp_mobile) as cp_info,lms_detail.cp_email as mail\n" + 
 			"    FROM\n" + 
 			"        lms_header, \n" + 
 			"        m_channel,\n" + 
