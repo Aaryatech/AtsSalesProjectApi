@@ -35,7 +35,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from ( SELECT\n" + 
 			"    t.*,t.task_sche_time as time,\n" + 
 			"    GROUP_CONCAT(emp.emp_name) AS employee_name,"
@@ -93,7 +99,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -195,7 +207,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"    t.*,t.task_sche_time as time,\n" + 
 			"    GROUP_CONCAT(emp.emp_name ) AS employee_name,"
@@ -229,7 +247,7 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 
 	@Query(value="SELECT\n" + 
 			"        a.*,\n" + 
-			"        b.emp_name as employee_name,0 as domain_id,0 as m_state_id,0 as m_city_id,'' as company_info \n" + 
+			"        b.emp_name as employee_name,0 as domain_id,0 as m_state_id,0 as m_city_id,'' as company_info,'' as channel_name \n" + 
 			"    from\n" + 
 			"        (SELECT\n" + 
 			"            t.*,\n" + 
@@ -284,7 +302,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -387,7 +411,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -489,7 +519,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -596,7 +632,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -704,7 +746,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -807,7 +855,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -908,7 +962,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -1008,7 +1068,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -1113,7 +1179,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -1218,7 +1290,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -1319,7 +1397,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 
@@ -1422,7 +1506,13 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as company_info\n" + 
+			"        0)  as company_info,\n" + 
+			"        ifnull(case                                                     \n" + 
+			"            when a.md_acc_type_id=1 then (select m_channel_name from m_channel where m_channel_id=c.channel_id)                          \n" + 
+			"            when a.md_acc_type_id=2 then (select m_channel_name from m_channel where m_channel_id=b.channel_id)                          \n" + 
+			"            else 0                                               \n" + 
+			"        end,\n" + 
+			"        0)  as channel_name\n" + 
 			"from (SELECT\n" + 
 			"        t.*,\n" + 
 			"        t.task_sche_time as time,\n" + 

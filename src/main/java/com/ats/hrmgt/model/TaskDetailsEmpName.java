@@ -63,7 +63,7 @@ public class TaskDetailsEmpName {
 	private int mStateId;
 	private int mCityId;
 	private String companyInfo;
-	
+	private String channelName;
 	public int getTaskDoneBy() {
 		return taskDoneBy;
 	}
@@ -468,6 +468,14 @@ public class TaskDetailsEmpName {
 		this.companyInfo = companyInfo;
 	}
 
+	public String getChannelName() {
+		return channelName;
+	}
+
+	public void setChannelName(String channelName) {
+		this.channelName = channelName;
+	}
+
 	@Override
 	public String toString() {
 		return "TaskDetailsEmpName [taskId=" + taskId + ", mdAccTypeId=" + mdAccTypeId + ", priKey=" + priKey
@@ -480,12 +488,12 @@ public class TaskDetailsEmpName {
 				+ ", thisTaskStatus=" + thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority="
 				+ taskPriority + ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy="
 				+ taskDoneBy + ", domainId=" + domainId + ", mStateId=" + mStateId + ", mCityId=" + mCityId
-				+ ", companyInfo=" + companyInfo + ", delStatus=" + delStatus + ", isActive=" + isActive
-				+ ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime + ", allocatedById="
-				+ allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2="
-				+ exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", employeeName=" + employeeName + ", sts="
-				+ sts + ", day=" + day + ", hour=" + hour + ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText
-				+ ", completed=" + completed + "]";
+				+ ", companyInfo=" + companyInfo + ", channelName=" + channelName + ", delStatus=" + delStatus
+				+ ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime
+				+ ", allocatedById=" + allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1
+				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", employeeName=" + employeeName
+				+ ", sts=" + sts + ", day=" + day + ", hour=" + hour + ", minutes=" + minutes + ", mdAccTypeText="
+				+ mdAccTypeText + ", completed=" + completed + "]";
 	}
 
 }

@@ -26,5 +26,10 @@ public interface LmsHeaderRepository extends JpaRepository<LmsHeader, Integer> {
 		@Query(value="SELECT * FROM lms_header WHERE lms_id=:lmsId"
 				,nativeQuery=true)
 		LmsHeader getLmsHeaderByLmsId(@Param("lmsId") int lmsId);
+
+
+		@Query(value="SELECT * FROM lms_header WHERE acc_company=:compName"
+				,nativeQuery=true)
+		LmsHeader checkCompanyName(String compName);
 	
 }

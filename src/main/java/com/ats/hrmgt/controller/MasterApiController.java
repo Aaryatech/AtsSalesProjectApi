@@ -445,6 +445,29 @@ public class MasterApiController {
 		return lmsHeadResp;
 	}
 
+	@RequestMapping(value = "/checkCompanyName", method = RequestMethod.POST)
+	public @ResponseBody Info checkCompanyName(@RequestParam("compName") String compName) {
+		Info info = new Info();
+
+		try {
+
+			LmsHeader lmsHeadResp = lmsHeadRepo.checkCompanyName(compName.trim());
+
+			if (lmsHeadResp == null) {
+				info.setError(false);
+				info.setMsg("1");
+			} else {
+				info.setError(true);
+				info.setMsg("0");
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return info;
+	}
+
 	// To Delete Lms Header Using Lms ID
 	@RequestMapping(value = "/deleteLmsHeader", method = RequestMethod.POST)
 	public @ResponseBody Info deleteLmsHeader(@RequestParam int lmsId) {
@@ -483,11 +506,13 @@ public class MasterApiController {
 			 * lmsDEtailList=lmsDetailRepo.getLmsDetailByLmsId(header.getLmsId());
 			 * header.setLmsDetailList(lmsDEtailList); }
 			 */
-			//System.err.println("Response Of /getListOfAllLmsHeader Is" + "\t" + AllLmsHeaderList);
+			// System.err.println("Response Of /getListOfAllLmsHeader Is" + "\t" +
+			// AllLmsHeaderList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			AllLmsHeaderList = new ArrayList<LmsHeaderWithNames>();
-			//System.err.println("Exception Occuered!!! In Catch Block /getListOfAllLmsHeader Mapping");
+			// System.err.println("Exception Occuered!!! In Catch Block
+			// /getListOfAllLmsHeader Mapping");
 			e.printStackTrace();
 		}
 
