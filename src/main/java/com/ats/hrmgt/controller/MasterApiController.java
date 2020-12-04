@@ -755,5 +755,91 @@ public class MasterApiController {
 
 		return allDesignationList;
 	}
+	
+	
+	
+	@RequestMapping(value="/getDesignationByIdAndDelstatus",method=RequestMethod.POST)
+	public @ResponseBody Designation getDesignationByIdAndDelstatus(@RequestParam int desgId) {
+		Designation desg=new Designation();
+		System.err.println("In /getDesignationByIdAndDelstatus");
+		try {
+			desg=designationRepo.getDesignationByIdAndDelstatus(desgId);
+			if(desg==null) {
+				desg=new Designation();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			desg=new Designation();
+			System.err.println("Exception Occuered In /getDesignationByIdAndDelstatus");
+			e.printStackTrace();
+		}
+		
+		
+		return desg;
+	}
+	
+	
+	@RequestMapping(value="/editDesignation",method=RequestMethod.POST)
+	public @ResponseBody Info editDesignation(@RequestParam int desgId,@RequestParam String desgName){
+		Info info=new Info();
+		int flag=0;
+		try {
+			flag=designationRepo.editDesignation(desgId, desgName);
+			if(flag!=0) {
+				info.setError(true);
+				info.setMsg("Designation Updated");
+			}else {
+				info.setError(false);
+				info.setMsg("Unable To Update Designation");
+			}
+			
+			
+			
+		} catch (Exception e) {
+			System.err.println("Ecxeption Occuered In /editDesignation ");
+			info.setError(false);
+			info.setMsg("Exception Occured");
+			// TODO: handle exception
+			e.printStackTrace();
+			
+		}
+		
+		
+		
+		return info;
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/deleteDesignation",method=RequestMethod.POST)
+	public @ResponseBody Info deleteDesignation(@RequestParam int desgId,@RequestParam String makerDtTime,@RequestParam int makerId ) {
+		Info info=new Info();
+		int flag=0;            
+		try { 
+			flag=designationRepo.deleteDesignation(desgId,makerId,makerDtTime);
+			if(flag!=0) {
+				info.setError(false);
+				info.setMsg("Designation Deleted");
+			}else {
+				info.setError(false);
+				info.setMsg("Unable To Delete Designation");
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			info.setError(false);
+			info.setMsg("Unable To Delete Designation Exception Occuered");
+			e.printStackTrace();
+		}
+		
+		
+		return info;
+	}
+	
+	
+	
+	
 
 }

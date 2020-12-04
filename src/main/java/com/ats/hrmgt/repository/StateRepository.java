@@ -2,7 +2,10 @@ package com.ats.hrmgt.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -22,6 +25,21 @@ public interface StateRepository extends JpaRepository<States, Integer> {
 
 	@Query(value="SELECT * FROM m_states WHERE m_state_name=:stateName",nativeQuery=true)
 	States findByStateName(String stateName);
+	
+	//To Update State Name
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE m_states SET m_state_name=:stateName WHERE  m_state_id=:stateId",nativeQuery=true)
+	int EditState(@Param("stateName") String stateName,@Param("stateId") int stateId);
+	
+	
+	//To Delete State
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE m_states SET del_status=false WHERE  m_state_id=:stateId",nativeQuery=true)
+	int DeleteState(@Param("stateId") int stateId);
+	
+	
 	
 	
 	
