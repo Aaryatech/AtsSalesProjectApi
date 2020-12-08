@@ -22,4 +22,9 @@ public interface TaskDetailsRepository extends JpaRepository<TaskDetails, Intege
 	@Query(value="select * from task_details WHERE task_id=:taskId",nativeQuery=true)
 	TaskDetails finByTaskId(int taskId);
 
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE task_details SET del_status=0 WHERE md_acc_type_id=:type and pri_key=:id",nativeQuery=true)
+	int deleteTask(int type, int id);
+
 }

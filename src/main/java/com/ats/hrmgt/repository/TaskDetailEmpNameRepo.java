@@ -169,14 +169,14 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"        select\n" + 
 			"                * \n" + 
 			"            from\n" + 
-			"                inquiry_header \n" + 
+			"                inquiry_header where del_status=1 \n" + 
 			"\n" + 
 			")b on a.pri_key=b.inq_id\n" + 
 			"left join (\n" + 
 			"            select\n" + 
 			"                *\n" + 
 			"            from\n" + 
-			"                lms_header \n" + 
+			"                lms_header where del_status=1\n" + 
 			"                )c on a.pri_key=c.lms_id",nativeQuery=true)
 	List<TaskDetailsEmpName> getTaskDetailWithEmpNameByEmpid(@Param("empId") int empId);
 	

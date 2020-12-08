@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -469,24 +470,24 @@ public class MasterApiController {
 	}
 
 	// To Delete Lms Header Using Lms ID
+	@Transactional
 	@RequestMapping(value = "/deleteLmsHeader", method = RequestMethod.POST)
 	public @ResponseBody Info deleteLmsHeader(@RequestParam int lmsId) {
 		Info info = new Info();
 		int flag = 0;
-		try {
-			flag = lmsHeadRepo.deleteLmsHeader(lmsId);
-			if (flag == 0) {
-				info.setError(true);
-				info.setMsg("Unable To Delete Header");
-			} else {
-				info.setError(false);
-				info.setMsg("Lms Header Deleted Successfully");
-			}
+		info.setError(false);
+		info.setMsg("Exception Occured Unable To Delete Lms Header");
 
-		} catch (Exception e) {
-			// TODO: handle exception
+		flag = lmsHeadRepo.deleteLmsHeader(lmsId);
+		
+		int delete = taskDetailsRepo.deleteTask(1,lmsId);
+		
+		if (flag == 0) {
+			info.setError(true);
+			info.setMsg("Unable To Delete Header");
+		} else {
 			info.setError(false);
-			info.setMsg("Exception Occured Unable To Delete Lms Header");
+			info.setMsg("Lms Header Deleted Successfully");
 		}
 
 		return info;
@@ -581,6 +582,7 @@ public class MasterApiController {
 		int flag = 0;
 		try {
 			flag = inquiryHeaderRepo.deleteInquiryHeaderByInqId(inqId);
+			int delete = taskDetailsRepo.deleteTask(2,inqId);
 			if (flag == 0) {
 				info.setError(true);
 				info.setMsg("Unable To Delete Inquiry Header!!!");
@@ -755,91 +757,76 @@ public class MasterApiController {
 
 		return allDesignationList;
 	}
-	
-	
-	
-	@RequestMapping(value="/getDesignationByIdAndDelstatus",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/getDesignationByIdAndDelstatus", method = RequestMethod.POST)
 	public @ResponseBody Designation getDesignationByIdAndDelstatus(@RequestParam int desgId) {
-		Designation desg=new Designation();
+		Designation desg = new Designation();
 		System.err.println("In /getDesignationByIdAndDelstatus");
 		try {
-			desg=designationRepo.getDesignationByIdAndDelstatus(desgId);
-			if(desg==null) {
-				desg=new Designation();
+			desg = designationRepo.getDesignationByIdAndDelstatus(desgId);
+			if (desg == null) {
+				desg = new Designation();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			desg=new Designation();
+			desg = new Designation();
 			System.err.println("Exception Occuered In /getDesignationByIdAndDelstatus");
 			e.printStackTrace();
 		}
-		
-		
+
 		return desg;
 	}
-	
-	
-	@RequestMapping(value="/editDesignation",method=RequestMethod.POST)
-	public @ResponseBody Info editDesignation(@RequestParam int desgId,@RequestParam String desgName){
-		Info info=new Info();
-		int flag=0;
+
+	@RequestMapping(value = "/editDesignation", method = RequestMethod.POST)
+	public @ResponseBody Info editDesignation(@RequestParam int desgId, @RequestParam String desgName) {
+		Info info = new Info();
+		int flag = 0;
 		try {
-			flag=designationRepo.editDesignation(desgId, desgName);
-			if(flag!=0) {
+			flag = designationRepo.editDesignation(desgId, desgName);
+			if (flag != 0) {
 				info.setError(true);
 				info.setMsg("Designation Updated");
-			}else {
+			} else {
 				info.setError(false);
 				info.setMsg("Unable To Update Designation");
 			}
-			
-			
-			
+
 		} catch (Exception e) {
 			System.err.println("Ecxeption Occuered In /editDesignation ");
 			info.setError(false);
 			info.setMsg("Exception Occured");
 			// TODO: handle exception
 			e.printStackTrace();
-			
+
 		}
-		
-		
-		
+
 		return info;
-		
-		
+
 	}
-	
-	
-	@RequestMapping(value="/deleteDesignation",method=RequestMethod.POST)
-	public @ResponseBody Info deleteDesignation(@RequestParam int desgId,@RequestParam String makerDtTime,@RequestParam int makerId ) {
-		Info info=new Info();
-		int flag=0;            
-		try { 
-			flag=designationRepo.deleteDesignation(desgId,makerId,makerDtTime);
-			if(flag!=0) {
+
+	@RequestMapping(value = "/deleteDesignation", method = RequestMethod.POST)
+	public @ResponseBody Info deleteDesignation(@RequestParam int desgId, @RequestParam String makerDtTime,
+			@RequestParam int makerId) {
+		Info info = new Info();
+		int flag = 0;
+		try {
+			flag = designationRepo.deleteDesignation(desgId, makerId, makerDtTime);
+			if (flag != 0) {
 				info.setError(false);
 				info.setMsg("Designation Deleted");
-			}else {
+			} else {
 				info.setError(false);
 				info.setMsg("Unable To Delete Designation");
 			}
-			
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			info.setError(false);
 			info.setMsg("Unable To Delete Designation Exception Occuered");
 			e.printStackTrace();
 		}
-		
-		
+
 		return info;
 	}
-	
-	
-	
-	
 
 }
