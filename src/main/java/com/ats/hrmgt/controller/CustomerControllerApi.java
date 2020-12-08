@@ -29,11 +29,11 @@ public class CustomerControllerApi {
 		List<LmsDetail> lmsDetailList =new ArrayList<LmsDetail>();
 		try {
 			custList=lmsheaderCustRepo.getCustList();
-			for(LmsHeaderWithNamesAndCustDetail item : custList) {
+			/*for(LmsHeaderWithNamesAndCustDetail item : custList) {
 				
 				lmsDetailList=lmsDetailRepo.getLmsDetailByLmsId(item.getLmsId());
 				item.setLmsDetailList(lmsDetailList);
-			}
+			}*/
 			//System.err.println("Responece From /getCustList "+custList);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -54,11 +54,11 @@ public class CustomerControllerApi {
 		List<LmsDetail> lmsDetailList =new ArrayList<LmsDetail>();
 		try {
 			CollabratorList=lmsheaderCustRepo.getCollabratorList();
-			for(LmsHeaderWithNamesAndCustDetail item : CollabratorList) {
+			/*for(LmsHeaderWithNamesAndCustDetail item : CollabratorList) {
 				
 				lmsDetailList=lmsDetailRepo.getLmsDetailByLmsId(item.getLmsId());
 				item.setLmsDetailList(lmsDetailList);
-			}
+			}*/
 			//System.err.println("Responece From /getCustList "+CollabratorList);
 		} catch (Exception e) {
 			// TODO: handle exception

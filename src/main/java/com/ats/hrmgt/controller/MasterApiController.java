@@ -108,7 +108,8 @@ public class MasterApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			tagResponse = new ArrayList<Tags>();
-			////System.err.println("Some Exception Occurs In Catch Block Of /getTagBymAccTypeId Mapping");
+			//// System.err.println("Some Exception Occurs In Catch Block Of
+			//// /getTagBymAccTypeId Mapping");
 			e.printStackTrace();
 		}
 
@@ -124,7 +125,8 @@ public class MasterApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			tagResponse = new ArrayList<Tags>();
-			////System.err.println("Exception Occurs In Catch Block Of /getAllTagsList Mapping");
+			//// System.err.println("Exception Occurs In Catch Block Of /getAllTagsList
+			//// Mapping");
 			e.printStackTrace();
 		}
 
@@ -139,11 +141,13 @@ public class MasterApiController {
 
 		try {
 			taskStatuslistResp = taskStatusRepo.getAllTaskStatusList();
-			////System.err.println("Response For  getAllTaskStatusList Is" + "\n" + taskStatuslistResp);
+			//// System.err.println("Response For getAllTaskStatusList Is" + "\n" +
+			//// taskStatuslistResp);
 		} catch (Exception e) {
 			// TODO: handle exception
 			taskStatuslistResp = new ArrayList<TaskStatus>();
-			////System.err.println("Exception Occurs!!!  In Catch Block Of /getAllTaskStatusList  Mapping");
+			//// System.err.println("Exception Occurs!!! In Catch Block Of
+			//// /getAllTaskStatusList Mapping");
 			e.printStackTrace();
 		}
 		return taskStatuslistResp;
@@ -157,10 +161,12 @@ public class MasterApiController {
 
 		try {
 			taskStatuslist = taskStatusRepo.getTaskStatusByAccTypeIdAndSequnce(mdAccTypeId, statusSequence);
-			////System.err.println("Responce Of /statusSequence =" + "\n" + taskStatuslist);
+			//// System.err.println("Responce Of /statusSequence =" + "\n" +
+			//// taskStatuslist);
 		} catch (Exception e) {
 			taskStatuslist = new ArrayList<TaskStatus>();
-			////System.err.println("Exceotion Occured!!! In Catch Block Of /statusSequence Mapping");
+			//// System.err.println("Exceotion Occured!!! In Catch Block Of /statusSequence
+			//// Mapping");
 			e.printStackTrace();
 			// TODO: handle exception
 		}
@@ -177,10 +183,12 @@ public class MasterApiController {
 		// ////System.err.println("m_acc_type_id="+mAccTypeId);
 		try {
 			BymdAccTypeIdResp = taskStatusRepo.getAllTaskStatusBymdAccTypeId(mdAccTypeId);
-			////System.err.println("Response For  /getAllTaskStatusByMaccTypeId Is" + "\n" + BymdAccTypeIdResp);
+			//// System.err.println("Response For /getAllTaskStatusByMaccTypeId Is" + "\n" +
+			//// BymdAccTypeIdResp);
 		} catch (Exception e) {
 			// TODO: handle exception
-			////System.err.println("Exception Occur!!! In Catch Block Of /getAllTaskStatusBymdAccTypeId Mapping");
+			//// System.err.println("Exception Occur!!! In Catch Block Of
+			// /getAllTaskStatusBymdAccTypeId Mapping");
 			BymdAccTypeIdResp = new ArrayList<TaskStatus>();
 			e.printStackTrace();
 		}
@@ -195,11 +203,13 @@ public class MasterApiController {
 
 		try {
 			allChannelList = channelRepo.getAllChannelList();
-			////System.err.println("Response Of /getAllChannelList is" + "\n" + allChannelList);
+			//// System.err.println("Response Of /getAllChannelList is" + "\n" +
+			//// allChannelList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			allChannelList = new ArrayList<Channel>();
-			////System.err.println("Exception Occured!!! In Catch Block Of /getAllChannelList Mapping");
+			//// System.err.println("Exception Occured!!! In Catch Block Of
+			//// /getAllChannelList Mapping");
 			e.printStackTrace();
 		}
 
@@ -250,11 +260,13 @@ public class MasterApiController {
 
 		try {
 			AllEmployeeRsp = empRepo.getAllEmployeeList();
-			//System.err.println("Response Of /getAllEmployeeList Is" + "\n" + AllEmployeeRsp);
+			// System.err.println("Response Of /getAllEmployeeList Is" + "\n" +
+			// AllEmployeeRsp);
 		} catch (Exception e) {
 			// TODO: handle exception
 			AllEmployeeRsp = new ArrayList<Employee>();
-			//System.err.println("Exception Occured!!! In Catch Block Of /getAllEmployeeList Mapping");
+			// System.err.println("Exception Occured!!! In Catch Block Of
+			// /getAllEmployeeList Mapping");
 			e.printStackTrace();
 		}
 
@@ -268,11 +280,13 @@ public class MasterApiController {
 
 		try {
 			EmpListByAccTypeId = empRepo.findEmployeeBymdAccTypeId(mdAccTypeId);
-			//System.err.println("Response From /findEmployeeBymdAccTypeId Is" + "\n" + EmpListByAccTypeId);
+			// System.err.println("Response From /findEmployeeBymdAccTypeId Is" + "\n" +
+			// EmpListByAccTypeId);
 		} catch (Exception e) {
 			// TODO: handle exception
 			EmpListByAccTypeId = new ArrayList<Employee>();
-			//System.err.println("Exception Occuered!!! In Catch Block Of /findEmployeeBymdAccTypeId Mapping");
+			// System.err.println("Exception Occuered!!! In Catch Block Of
+			// /findEmployeeBymdAccTypeId Mapping");
 			e.printStackTrace();
 		}
 
@@ -287,12 +301,14 @@ public class MasterApiController {
 
 		try {
 			TaskDetailListResp = taskDetailEmpRepo.getAllTaskWithEmpNAme();
-			//System.err.println("Response Of /getAllTaskWithEmpNAme Is" + "\n" + TaskDetailListResp);
+			// System.err.println("Response Of /getAllTaskWithEmpNAme Is" + "\n" +
+			// TaskDetailListResp);
 		} catch (Exception e) {
 			// TODO: handle exception
 
 			TaskDetailListResp = new ArrayList<TaskDetailsEmpName>();
-			//System.err.println("Exception Occuered!!! In Catch Block Of /getAllTaskWithEmpNAme Mapping");
+			// System.err.println("Exception Occuered!!! In Catch Block Of
+			// /getAllTaskWithEmpNAme Mapping");
 			e.printStackTrace();
 
 		}
@@ -307,10 +323,12 @@ public class MasterApiController {
 
 		try {
 			taskDetailsResp = taskDetailEmpRepo.getTaskDetailWithEmpNameByEmpid(empId);
-			//System.err.println("Response From /getSingleTaskDetailWithEmpName Is" + "\t" + taskDetailsResp);
+			// System.err.println("Response From /getSingleTaskDetailWithEmpName Is" + "\t"
+			// + taskDetailsResp);
 		} catch (Exception e) {
 			taskDetailsResp = new ArrayList<TaskDetailsEmpName>();
-			//System.err.println("Exception Occured!!! In Catch Block Of /getSingleTaskDetailWithEmpName Mapping");
+			// System.err.println("Exception Occured!!! In Catch Block Of
+			// /getSingleTaskDetailWithEmpName Mapping");
 			e.printStackTrace();
 			// TODO: handle exception
 		}
@@ -324,11 +342,13 @@ public class MasterApiController {
 		TaskDetailsEmpName taskDetails = new TaskDetailsEmpName();
 		try {
 			taskDetails = taskDetailEmpRepo.getTaskdetailsEmpnameByTaskId(taskId);
-			//System.err.println("Response From /getTaskdetailsEmpnameByTaskId Is" + "\n" + taskDetails);
+			// System.err.println("Response From /getTaskdetailsEmpnameByTaskId Is" + "\n" +
+			// taskDetails);
 		} catch (Exception e) {
 			// TODO: handle exception
 			taskDetails = new TaskDetailsEmpName();
-			//System.err.println("Exception Occured!!! In Catch Block Of /getTaskdetailsEmpnameByTaskId Mapping ");
+			// System.err.println("Exception Occured!!! In Catch Block Of
+			// /getTaskdetailsEmpnameByTaskId Mapping ");
 			e.printStackTrace();
 		}
 		return taskDetails;
@@ -341,11 +361,12 @@ public class MasterApiController {
 
 		try {
 			taskDetailsResp = taskDetailsRepo.save(taskDetails);
-			//System.err.println("Saved Task Is =" + "\t" + taskDetailsResp);
+			// System.err.println("Saved Task Is =" + "\t" + taskDetailsResp);
 		} catch (Exception e) {
 			// TODO: handle exception
 			taskDetailsResp = new TaskDetails();
-			//System.err.println("Exception Occured!!! In Catch Block Of /addNewTask Mapping");
+			// System.err.println("Exception Occured!!! In Catch Block Of /addNewTask
+			// Mapping");
 			e.printStackTrace();
 		}
 
@@ -359,11 +380,12 @@ public class MasterApiController {
 
 		try {
 			taskDetailsResp = taskDetailsRepo.finByTaskId(taskId);
-			//System.err.println("Saved Task Is =" + "\t" + taskDetailsResp);
+			// System.err.println("Saved Task Is =" + "\t" + taskDetailsResp);
 		} catch (Exception e) {
 			// TODO: handle exception
 			taskDetailsResp = new TaskDetails();
-			//System.err.println("Exception Occured!!! In Catch Block Of /addNewTask Mapping");
+			// System.err.println("Exception Occured!!! In Catch Block Of /addNewTask
+			// Mapping");
 			e.printStackTrace();
 		}
 
@@ -390,7 +412,8 @@ public class MasterApiController {
 			// TODO: handle exception
 			info.setError(true);
 			info.setMsg("Some Exception Occured Unable To Delete Task");
-			//System.err.println("Exception Occured!!! In /deleteTaskDetailsByTaskId Mapping");
+			// System.err.println("Exception Occured!!! In /deleteTaskDetailsByTaskId
+			// Mapping");
 			e.printStackTrace();
 		}
 
@@ -407,12 +430,13 @@ public class MasterApiController {
 			lmsHeaderResp = lmsHeaderWnamesRepo.getLmsHeaderByLmsId(lmsId);
 			lmsDetailList = lmsDetailRepo.getLmsDetailByLmsId(lmsId);
 			lmsHeaderResp.setLmsDetailList(lmsDetailList);
-			//System.err.println("Lms Header  IS =" + "\t" + lmsHeaderResp);
+			// System.err.println("Lms Header IS =" + "\t" + lmsHeaderResp);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			lmsHeaderResp = new LmsHeaderWithNames();
-			//System.err.println("Exception Occured!!! In Catch Bolock /getLmsHeader mapping");
+			// System.err.println("Exception Occured!!! In Catch Bolock /getLmsHeader
+			// mapping");
 			e.printStackTrace();
 		}
 
@@ -426,7 +450,7 @@ public class MasterApiController {
 		LmsHeader lmsHeadResp = new LmsHeader();
 		List<LmsDetail> lmsDetailresp = new ArrayList<LmsDetail>();
 		try {
-			//System.out.println(lmsHeader);
+			// System.out.println(lmsHeader);
 			lmsHeadResp = lmsHeadRepo.save(lmsHeader);
 			lmsDetailresp = lmsHeader.getLmsDetailList();
 			for (LmsDetail detail : lmsDetailresp) {
@@ -434,16 +458,37 @@ public class MasterApiController {
 
 			}
 			lmsDetailresp = lmsDetailRepo.saveAll(lmsHeader.getLmsDetailList());
-			//System.err.println("Added LMS Header Is=" + "\t" + lmsHeadResp);
+			// System.err.println("Added LMS Header Is=" + "\t" + lmsHeadResp);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			lmsHeadResp = new LmsHeader();
 			lmsDetailresp = new ArrayList<LmsDetail>();
-			//System.err.println("Exception Occuered!!! In Catch Block /addNewLmsHeader Mapping");
+			// System.err.println("Exception Occuered!!! In Catch Block /addNewLmsHeader
+			// Mapping");
 			e.printStackTrace();
 		}
 		return lmsHeadResp;
+	}
+
+	@RequestMapping(value = "/updateAccCodeInLms", method = RequestMethod.POST)
+	public @ResponseBody Info updateAccCodeInLms(@RequestParam("type") int type, @RequestParam("lmsId") String lmsId) {
+
+		Info info = new Info();
+
+		try {
+
+			int maxcount = lmsHeadRepo.getmaxcount(type);
+			maxcount = maxcount + 1;
+			int update = lmsHeadRepo.updateAccCodeInLms(maxcount, lmsId);
+			info.setError(false);
+			info.setMsg("generated");
+		} catch (Exception e) {
+			info.setError(true);
+			info.setMsg("failed");
+			e.printStackTrace();
+		}
+		return info;
 	}
 
 	@RequestMapping(value = "/checkCompanyName", method = RequestMethod.POST)
@@ -479,9 +524,9 @@ public class MasterApiController {
 		info.setMsg("Exception Occured Unable To Delete Lms Header");
 
 		flag = lmsHeadRepo.deleteLmsHeader(lmsId);
-		
-		int delete = taskDetailsRepo.deleteTask(1,lmsId);
-		
+
+		int delete = taskDetailsRepo.deleteTask(1, lmsId);
+
 		if (flag == 0) {
 			info.setError(true);
 			info.setMsg("Unable To Delete Header");
@@ -561,12 +606,13 @@ public class MasterApiController {
 				detail.setInqId(inquiryHead.getInqId());
 			}
 			inqDetailList = inquiryDetailRepo.saveAll(inquiryHead.getInqDetailList());
-			//System.err.println("Saved Headr Is =" + "\t" + inqHeaderResp);
+			// System.err.println("Saved Headr Is =" + "\t" + inqHeaderResp);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			inqHeaderResp = new InquiryHeader();
-			//System.err.println("Exception Occur!!! In Catch Block Of /addNewInquiryHeader Mapping");
+			// System.err.println("Exception Occur!!! In Catch Block Of /addNewInquiryHeader
+			// Mapping");
 			e.printStackTrace();
 		}
 
@@ -582,7 +628,7 @@ public class MasterApiController {
 		int flag = 0;
 		try {
 			flag = inquiryHeaderRepo.deleteInquiryHeaderByInqId(inqId);
-			int delete = taskDetailsRepo.deleteTask(2,inqId);
+			int delete = taskDetailsRepo.deleteTask(2, inqId);
 			if (flag == 0) {
 				info.setError(true);
 				info.setMsg("Unable To Delete Inquiry Header!!!");
@@ -595,7 +641,8 @@ public class MasterApiController {
 			// TODO: handle exception
 			info.setError(true);
 			info.setMsg("Exception Occuered Unable To Delete Inquiry Header");
-			//System.err.println("Exception occuered!!! In Catch Block Of /deleteInquiryHeaderByInqId Mapping");
+			// System.err.println("Exception occuered!!! In Catch Block Of
+			// /deleteInquiryHeaderByInqId Mapping");
 			e.printStackTrace();
 		}
 
@@ -619,12 +666,14 @@ public class MasterApiController {
 			 * }
 			 */
 
-			//System.err.println("Response From /getAllInquiryHeaderWithName =" + "\t" + inqHeadResp);
+			// System.err.println("Response From /getAllInquiryHeaderWithName =" + "\t" +
+			// inqHeadResp);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			inqHeadResp = new ArrayList<InquiryHeaderWithNames>();
-			//System.err.println("Exception Occuered!!! In Catcg Of /getAllInquiryHeaderWithName Mapping");
+			// System.err.println("Exception Occuered!!! In Catcg Of
+			// /getAllInquiryHeaderWithName Mapping");
 			e.printStackTrace();
 		}
 
@@ -636,23 +685,25 @@ public class MasterApiController {
 	@RequestMapping(value = "/getInqHeaderWithNameById", method = RequestMethod.POST)
 	public @ResponseBody InquiryHeaderWithNames getInqHeaderWithNameById(@RequestParam int inqId) {
 		InquiryHeaderWithNames inqHeadResp = new InquiryHeaderWithNames();
-		// List<InquiryDetail> inqDetailList = new ArrayList<InquiryDetail>();
+		List<InquiryDetail> inqDetailList = new ArrayList<InquiryDetail>();
 
 		try {
 
-			// inqDetailList = inquiryDetailRepo.getInqDeatilById(inqId);
+			inqDetailList = inquiryDetailRepo.getInqDeatilById(inqId);
 			// //System.err.println("inqDetailLis" + inqDetailList);
 			inqHeadResp = inquiryHeadWithNames.getInqHeaderWithNameById(inqId);
 			if (inqHeadResp == null) {
 				inqHeadResp = new InquiryHeaderWithNames();
 			}
 			// //System.err.println("Before Add inqDEtailLsit"+inqHeadResp);
-			// inqHeadResp.setInqDetailList(inqDetailList);
-			//System.err.println("Response From /getInqHeaderWithNameById =" + "\t" + inqHeadResp);
+			inqHeadResp.setInqDetailList(inqDetailList);
+			// System.err.println("Response From /getInqHeaderWithNameById =" + "\t" +
+			// inqHeadResp);
 		} catch (Exception e) {
 			// TODO: handle exception
 			inqHeadResp = new InquiryHeaderWithNames();
-			//System.err.println("Exception Occured!!! In /getInqHeaderWithNameById Mapping");
+			// System.err.println("Exception Occured!!! In /getInqHeaderWithNameById
+			// Mapping");
 			e.printStackTrace();
 		}
 
@@ -761,7 +812,7 @@ public class MasterApiController {
 	@RequestMapping(value = "/getDesignationByIdAndDelstatus", method = RequestMethod.POST)
 	public @ResponseBody Designation getDesignationByIdAndDelstatus(@RequestParam int desgId) {
 		Designation desg = new Designation();
-		//System.err.println("In /getDesignationByIdAndDelstatus");
+		// System.err.println("In /getDesignationByIdAndDelstatus");
 		try {
 			desg = designationRepo.getDesignationByIdAndDelstatus(desgId);
 			if (desg == null) {
@@ -770,7 +821,7 @@ public class MasterApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			desg = new Designation();
-			//System.err.println("Exception Occuered In /getDesignationByIdAndDelstatus");
+			// System.err.println("Exception Occuered In /getDesignationByIdAndDelstatus");
 			e.printStackTrace();
 		}
 
@@ -792,7 +843,7 @@ public class MasterApiController {
 			}
 
 		} catch (Exception e) {
-			//System.err.println("Ecxeption Occuered In /editDesignation ");
+			// System.err.println("Ecxeption Occuered In /editDesignation ");
 			info.setError(false);
 			info.setMsg("Exception Occured");
 			// TODO: handle exception

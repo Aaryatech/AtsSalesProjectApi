@@ -17,7 +17,7 @@ public interface EmpTaskStatusCountRepo extends JpaRepository<EmpTaskStatusCount
 			"            task_details t \n" + 
 			"        where \n" + 
 			"        t.this_task_status=0\n" + 
-			"        and FIND_IN_SET(:empId, t.task_alloted_to) and t.md_acc_type_id=:moduleId \n" + 
+			"        and FIND_IN_SET(:empId, t.task_alloted_to) and t.md_acc_type_id=:moduleId and t.del_status=1\n" + 
 			"    group by task_final_status",nativeQuery=true)
 	List<EmpTaskStatusCount> getempTaskStatusWiseDetail(int empId,int moduleId);
 
