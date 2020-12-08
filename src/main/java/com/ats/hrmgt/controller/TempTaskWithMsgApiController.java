@@ -46,10 +46,10 @@ public class TempTaskWithMsgApiController {
 		
 		try {
 			taskDetailList=taskDetailWithMsgRepo.getTaskDetailsClientProfiling(priKey, mdAccTypeId);
-			System.err.println("Response From /getTaskDetailsClientProfiling Is"+"\n"+taskDetailList);
+			//System.err.println("Response From /getTaskDetailsClientProfiling Is"+"\n"+taskDetailList);
 		} catch (Exception e) {
 			taskDetailList=new ArrayList<TaskDetailsWithMsg>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getTaskDetailsClientProfiling Mappimg");
+			//System.err.println("Exception Occured!!! In Catch Block Of /getTaskDetailsClientProfiling Mappimg");
 			e.printStackTrace();
 			// TODO: handle exception
 		}
@@ -70,10 +70,10 @@ public class TempTaskWithMsgApiController {
 		
 		try {
 			taskDetailList=taskDetailWithMsgRepo.getTaskDetailsClientQuestions(priKey, mdAccTypeId);
-			System.err.println("Response From /getTaskDetailsClientQuestions Is"+"\n"+taskDetailList);
+			//System.err.println("Response From /getTaskDetailsClientQuestions Is"+"\n"+taskDetailList);
 		} catch (Exception e) {
 			taskDetailList=new ArrayList<TaskDetailsWithMsg>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getTaskDetailsClientQuestions Mappimg");
+			//System.err.println("Exception Occured!!! In Catch Block Of /getTaskDetailsClientQuestions Mappimg");
 			e.printStackTrace();
 			// TODO: handle exception
 		}
@@ -92,10 +92,10 @@ public class TempTaskWithMsgApiController {
 		
 		try {
 			taskDetailList=taskDetailWithMsgRepo.getTaskDetailsClientWentWrong(priKey, mdAccTypeId);
-			System.err.println("Response From /getTaskDetailsClientWentWrong Is"+"\n"+taskDetailList);
+			//System.err.println("Response From /getTaskDetailsClientWentWrong Is"+"\n"+taskDetailList);
 		} catch (Exception e) {
 			taskDetailList=new ArrayList<TaskDetailsWithMsg>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getTaskDetailsClientWentWrong Mappimg");
+			//System.err.println("Exception Occured!!! In Catch Block Of /getTaskDetailsClientWentWrong Mappimg");
 			e.printStackTrace();
 			// TODO: handle exception
 		}
@@ -110,10 +110,10 @@ public class TempTaskWithMsgApiController {
 		
 		try {
 			AlldeptList=deptRepo.getAllDepartment();
-			System.err.println("Response From /getAllDepartment ="+"\n"+AlldeptList);
+			//System.err.println("Response From /getAllDepartment ="+"\n"+AlldeptList);
 		} catch (Exception e) {
 			AlldeptList=new ArrayList<Department>();
-			System.err.println("Exception Occured!! In catch Block Of /getAllDepartment Mapping");
+			//System.err.println("Exception Occured!! In catch Block Of /getAllDepartment Mapping");
 			e.printStackTrace();
 			// TODO: handle exception
 		}
@@ -130,7 +130,7 @@ public class TempTaskWithMsgApiController {
 				AllDesignationList=designationRepo.getAllDesignation();
 			} catch (Exception e) {
 				AllDesignationList=new ArrayList<Designation>();
-				System.err.println("Exception Occured!!! In Catch Block /getAllDesignation Mapping");
+				//System.err.println("Exception Occured!!! In Catch Block /getAllDesignation Mapping");
 				e.printStackTrace();
 				// TODO: handle exception
 			}
@@ -145,10 +145,10 @@ public class TempTaskWithMsgApiController {
 		List<DomainType> AllDomainTypeList=new ArrayList<DomainType>();
 		try {
 			AllDomainTypeList=domainTypeRepo.getAllDomainTypelist();
-			System.err.println("Response From /getAllDomainTypelist ="+"\n"+AllDomainTypeList);
+			//System.err.println("Response From /getAllDomainTypelist ="+"\n"+AllDomainTypeList);
 		} catch ( Exception e) {
 			AllDomainTypeList=new ArrayList<DomainType>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getAllDomainTypelist Mapping ");
+			//System.err.println("Exception Occured!!! In Catch Block Of /getAllDomainTypelist Mapping ");
 			e.printStackTrace();
 			// TODO: handle exception
 		}

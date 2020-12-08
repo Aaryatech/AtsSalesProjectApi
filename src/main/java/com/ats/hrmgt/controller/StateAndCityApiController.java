@@ -38,7 +38,7 @@ public class StateAndCityApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			stateList = new ArrayList<States>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getAllStates Mapping");
+			//System.err.println("Exception Occured!!! In Catch Block Of /getAllStates Mapping");
 			e.printStackTrace();
 		}
 
@@ -90,7 +90,7 @@ public class StateAndCityApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			stateResp=new States();
-			System.err.println("Exception Occured In /getStateByStateId");
+			//System.err.println("Exception Occured In /getStateByStateId");
 			e.printStackTrace();
 		}
 		
@@ -119,7 +119,7 @@ public class StateAndCityApiController {
 			// TODO: handle exception
 			info.setError(true);
 			info.setMsg("Unable To Update State Exception Occuered!");
-			System.err.println("Exception Occured In /EditState");
+			//System.err.println("Exception Occured In /EditState");
 			e.printStackTrace();
 		}
 		
@@ -147,7 +147,7 @@ public class StateAndCityApiController {
 			// TODO: handle exception
 			info.setError(true);
 			info.setMsg("Unable To Delete State Exception Occuered!");
-			System.err.println("Exception Occured In /DeleteState");
+			//System.err.println("Exception Occured In /DeleteState");
 			e.printStackTrace();
 		}
 		
@@ -168,7 +168,7 @@ public class StateAndCityApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			cityList = new ArrayList<City>();
-			System.err.println("Exception Occured!!! In Catch Block Of /getCitiesByStateId Mapping");
+			//System.err.println("Exception Occured!!! In Catch Block Of /getCitiesByStateId Mapping");
 			e.printStackTrace();
 		}
 
@@ -222,7 +222,7 @@ public class StateAndCityApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			cityListResp=new ArrayList<City>();
-			System.err.println("Exception Ocuered In /getAllCitiesList ");
+			//System.err.println("Exception Ocuered In /getAllCitiesList ");
 			e.printStackTrace();
 		}
 		
@@ -240,7 +240,7 @@ public class StateAndCityApiController {
 			} catch (Exception e) {
 				// TODO: handle exception
 				cityResp=new City();
-				System.err.println("Exception Occuered In /getCityBycityId ");
+				//System.err.println("Exception Occuered In /getCityBycityId ");
 				e.printStackTrace();
 			}
 		
@@ -267,7 +267,7 @@ public class StateAndCityApiController {
 				// TODO: handle exception
 				info.setError(true);
 				info.setMsg("Unable To Update City Exception Occuerred!!");
-				System.err.println("Exception Occuerred In /editCity");
+				//System.err.println("Exception Occuerred In /editCity");
 				e.printStackTrace();
 			}
 			
@@ -294,7 +294,7 @@ public class StateAndCityApiController {
 				// TODO: handle exception
 				info.setError(true);
 				info.setMsg("Unable To Delete City Exception Occuerred!!");
-				System.err.println("Exception Occuerred In /DeleteCity");
+				//System.err.println("Exception Occuerred In /DeleteCity");
 				e.printStackTrace();
 			}
 			

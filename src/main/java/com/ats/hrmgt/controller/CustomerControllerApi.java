@@ -34,11 +34,11 @@ public class CustomerControllerApi {
 				lmsDetailList=lmsDetailRepo.getLmsDetailByLmsId(item.getLmsId());
 				item.setLmsDetailList(lmsDetailList);
 			}
-			System.err.println("Responece From /getCustList "+custList);
+			//System.err.println("Responece From /getCustList "+custList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			custList=new ArrayList<LmsHeaderWithNamesAndCustDetail>();
-			System.err.println("Exception Occuered!!! In /getCustList Catch Block");
+			//System.err.println("Exception Occuered!!! In /getCustList Catch Block");
 			e.printStackTrace();
 		}
 		
@@ -59,11 +59,11 @@ public class CustomerControllerApi {
 				lmsDetailList=lmsDetailRepo.getLmsDetailByLmsId(item.getLmsId());
 				item.setLmsDetailList(lmsDetailList);
 			}
-			System.err.println("Responece From /getCustList "+CollabratorList);
+			//System.err.println("Responece From /getCustList "+CollabratorList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			CollabratorList=new ArrayList<LmsHeaderWithNamesAndCustDetail>();
-			System.err.println("Exception Occuered!!! In /getCustList Catch Block");
+			//System.err.println("Exception Occuered!!! In /getCustList Catch Block");
 			e.printStackTrace();
 		}
 		

@@ -40,7 +40,7 @@ public class UserLoginDataControllerApi {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.err.println("Exception In Catch Block Of Restcontrollers /getUserByUsernameAndPassword mapping");
+			//System.err.println("Exception In Catch Block Of Restcontrollers /getUserByUsernameAndPassword mapping");
 			e.printStackTrace();
 			return null;
 		}
@@ -58,7 +58,7 @@ public class UserLoginDataControllerApi {
 		} catch (Exception e) {
 			// TODO: handle exception
 			empResp=new Employee();
-			System.err.println("Exception Occured!!! In Catch Block Of /findEmployeeByUsername Mapping.");
+			//System.err.println("Exception Occured!!! In Catch Block Of /findEmployeeByUsername Mapping.");
 			e.printStackTrace();
 		}
 		
@@ -86,7 +86,7 @@ public class UserLoginDataControllerApi {
 		// TODO: handle exception
 		info.setError(true);
 		info.setMsg("Exception Occoerd In /resetPassword Mapping");
-		System.err.println("Exception Occoerd In /resetPassword Mapping");
+		//System.err.println("Exception Occoerd In /resetPassword Mapping");
 		e.printStackTrace();
 	}
 	

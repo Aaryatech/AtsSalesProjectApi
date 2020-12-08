@@ -46,7 +46,7 @@ public class TagsApiController {
 			tagResponse=tagRepo.getAllTAgsByDelStatus();
 		} catch (Exception e) {
 			tagResponse=new ArrayList<Tags>();
-			System.err.println("Exception Occurs In Catch Of /getAllTAgsByDelStatus Mapping ");
+			//System.err.println("Exception Occurs In Catch Of /getAllTAgsByDelStatus Mapping ");
 			e.printStackTrace();
 			
 		}
@@ -61,10 +61,10 @@ public class TagsApiController {
 		
 		try {
 			tagResponse=tagRepo.getAllTagsWithAccountTypeName();
-			System.err.println(tagResponse);
+			//System.err.println(tagResponse);
 		} catch (Exception e) {
 			tagResponse=new ArrayList<Tags>();
-			System.err.println("Exception Occurs In Catch Of /getAllTagsWithAccountTypeName Mapping ");
+			//System.err.println("Exception Occurs In Catch Of /getAllTagsWithAccountTypeName Mapping ");
 			e.printStackTrace();
 			
 		}
@@ -92,7 +92,7 @@ public class TagsApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			
-			System.err.println("Exception Occurs In Catch Block Of /deleteTagByDelStatus  Mapping");
+			//System.err.println("Exception Occurs In Catch Block Of /deleteTagByDelStatus  Mapping");
 			e.printStackTrace();
 			info.setError(true);
 			info.setMsg("Unable To  Delete Tag Given Exception Occurrs"+e);
@@ -111,7 +111,7 @@ public class TagsApiController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			tagResp=new Tags();
-			System.err.println("Somthing Went Wrong In Catch Block Of /getSingTagByIdAndDelStatus Mapping");
+			//System.err.println("Somthing Went Wrong In Catch Block Of /getSingTagByIdAndDelStatus Mapping");
 			e.printStackTrace();
 		}
 		
@@ -136,7 +136,7 @@ public class TagsApiController {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.err.println("Somthing Went Wrong In Catch Of /editTag Mapping");
+			//System.err.println("Somthing Went Wrong In Catch Of /editTag Mapping");
 			info.setError(true);
 			info.setMsg("Eception Occours"+e);
 			e.printStackTrace();
