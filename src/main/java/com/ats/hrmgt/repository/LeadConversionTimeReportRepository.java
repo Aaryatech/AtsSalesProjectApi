@@ -66,7 +66,7 @@ public interface LeadConversionTimeReportRepository extends JpaRepository<LeadCo
 			"        lms_header.del_status = 1      \n" + 
 			"        AND lms_header.maker_datetime BETWEEN :fromDate AND :toDate      \n" + 
 			"        AND lms_header.acc_domain_id = m_domain_type.m_domain_id      \n" + 
-			"        AND m_channel.m_channel_id = lms_header.channel_id",nativeQuery=true)
+			"        AND m_channel.m_channel_id = lms_header.channel_id  ORDER BY m_channel.m_channel_id",nativeQuery=true)
 	List<LeadConversionTimeReport> getLeadConTymReportList(@Param("fromDate") String fromDate,
 																	@Param("toDate") String toDate);
 
