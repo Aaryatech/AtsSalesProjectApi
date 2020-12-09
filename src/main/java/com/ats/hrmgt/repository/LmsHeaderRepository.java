@@ -1,5 +1,7 @@
 package com.ats.hrmgt.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,5 +34,17 @@ public interface LmsHeaderRepository extends JpaRepository<LmsHeader, Integer> {
 	@Modifying
 	@Query(value = "UPDATE lms_header SET acc_code=:maxcount WHERE lms_id=:lmsId", nativeQuery = true)
 	int updateAccCodeInLms(int maxcount, String lmsId);
+
+
+
+	@Query(value="SELECT\n" + 
+			"    *\n" + 
+			"FROM\n" + 
+			"    lms_header\n" + 
+			"WHERE\n" + 
+			"    maker_user_id =:userId AND maker_datetime like %:cDate% AND del_status = 1 AND is_active = 1",nativeQuery=true)
+	List<LmsHeader> getLmsByUserIdAndDate(@Param("userId") int userId,@Param("cDate") String cDate);
+
+
 
 }
