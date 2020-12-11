@@ -187,6 +187,44 @@ public static List<String> getAllMonthBetDates(Date  fromDate,Date toDate) {
 	}
 
 
+
+public static String getMonthsStartEnd() {
+	String leaveDateRange = null;
+	String fromDate = null;
+	String toDate = null;
+	Calendar c = Calendar.getInstance(); // this takes current date
+
+	// System.out.println(c.getTime());
+
+	 c.add(Calendar.MONTH, 1);  
+        c.set(Calendar.DAY_OF_MONTH, 1);  
+        c.add(Calendar.DATE, -1);  
+	Date toDate1 = c.getTime();
+//System.err.println("to date "+toDate1);
+	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+	toDate = sdf.format(toDate1);
+	c = Calendar.getInstance(); 
+	c.set(Calendar.DAY_OF_MONTH, 1);
+	Date fromDate1 = c.getTime();
+	
+	
+
+	fromDate = sdf.format(fromDate1);
+
+	leaveDateRange = fromDate.concat(" to ").concat(toDate);
+	return leaveDateRange;
+}
+		
+
+
+
+
+
+
+
+
+
  
 		
 		

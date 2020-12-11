@@ -93,7 +93,22 @@ public interface TaskDetailEmpNameRepo extends  JpaRepository<TaskDetailsEmpName
 			"            when a.md_acc_type_id=2 then (b.inq_domain_id)             \n" + 
 			"            else 0                                      \n" + 
 			"        end,\n" + 
-			"        0)  as domain_id,\n" + 
+			"        0)  as domain_id,\n"
+			+ "IFNULL(\n" + 
+			"    CASE WHEN a.md_acc_type_id = 1 THEN(\n" + 
+			"        CONCAT(\n" + 
+			"           \n" + 
+			"            c.acc_company_landline\n" + 
+			"        )\n" + 
+			"    ) WHEN a.md_acc_type_id = 2 THEN(\n" + 
+			"        CONCAT(\n" + 
+			"            \n" + 
+			"            b.inq_company_landline\n" + 
+			"        )\n" + 
+			"    ) ELSE 0\n" + 
+			"END,\n" + 
+			"0\n" + 
+			") AS company_contact," + 
 			"ifnull(case                                        \n" + 
 			"            when a.md_acc_type_id=1 then (concat(c.acc_company,'-',c.acc_company_landline))             \n" + 
 			"            when a.md_acc_type_id=2 then (concat(b.inq_company,'-',b.inq_company_landline))             \n" + 

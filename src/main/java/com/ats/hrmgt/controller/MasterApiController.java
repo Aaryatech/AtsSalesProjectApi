@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ats.hrmgt.common.DateConvertor;
 import com.ats.hrmgt.model.Channel;
 import com.ats.hrmgt.model.CustInfo;
 import com.ats.hrmgt.model.DashBoardSummary;
@@ -758,8 +759,13 @@ public class MasterApiController {
 
 			Date dt = new Date();
 			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+			String StartEndOfMnth =	DateConvertor.getMonthsStartEnd();
+			String dates[]=StartEndOfMnth.split("to");
+			String mStartDate=DateConvertor.convertToYMD(dates[0]);
+			String mEndDate=DateConvertor.convertToYMD(dates[1]);
+			System.err.println("Month Dates"+mStartDate+mEndDate);
 
-			dashBoardSummary = dashBoardSummaryRepo.getRegularDashboardSummry(empId, sf.format(dt));
+			dashBoardSummary = dashBoardSummaryRepo.getRegularDashboardSummry(empId, sf.format(dt),mStartDate,mEndDate);
 
 		} catch (Exception e) {
 

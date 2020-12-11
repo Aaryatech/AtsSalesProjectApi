@@ -17,6 +17,7 @@ import com.ats.hrmgt.model.CityReports;
 import com.ats.hrmgt.model.CityWiseDetailReport;
 import com.ats.hrmgt.model.DomainTypeReports;
 import com.ats.hrmgt.model.DomainWiseDetailReport;
+import com.ats.hrmgt.model.EmployeeReport;
 import com.ats.hrmgt.model.LeadConversionTimeReport;
 import com.ats.hrmgt.repository.ChannelReportsRepository;
 import com.ats.hrmgt.repository.ChannelWiseDetailReportRepository;
@@ -24,6 +25,7 @@ import com.ats.hrmgt.repository.CityReportsRepository;
 import com.ats.hrmgt.repository.CityWiseDetailReportRepository;
 import com.ats.hrmgt.repository.DomainTypeReportsRepository;
 import com.ats.hrmgt.repository.DomainWiseDetailReportRepository;
+import com.ats.hrmgt.repository.EmpLeadInqCountReportRepository;
 import com.ats.hrmgt.repository.LeadConversionTimeReportRepository;
 
 @RestController
@@ -53,6 +55,11 @@ public class ReportsControllerApi {
 	
 	@Autowired
 	LeadConversionTimeReportRepository leadConTymRepo;
+	
+	
+	
+	@Autowired
+	EmpLeadInqCountReportRepository empLMSINACntRepo;
 	
 	
 	
@@ -279,7 +286,26 @@ public class ReportsControllerApi {
 	}
 	
 	
-	
+	@RequestMapping(value="/getEmpWiseLMSIMScount",method=RequestMethod.POST)
+	public @ResponseBody List<EmployeeReport> getEmpWiseLMSIMScount(@RequestParam String fromDate,@RequestParam String toDate){
+		List<EmployeeReport> empLmsIMsCntList=new ArrayList<EmployeeReport>();
+		
+		try {
+			
+			empLmsIMsCntList=empLMSINACntRepo.getEmpWiseLMSIMScount(fromDate, toDate);
+			System.err.println("Size Of empLmsIMsCntList=="+empLmsIMsCntList.size());
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("Exception Occured In /getEmpWiseLMSIMScount");
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return empLmsIMsCntList;
+		
+	}
 	
 	
 	

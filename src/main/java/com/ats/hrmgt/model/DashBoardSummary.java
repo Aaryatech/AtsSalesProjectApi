@@ -19,6 +19,13 @@ public class DashBoardSummary {
 	private int pendingPts;
 	private int todaysLeadCount;
 	private int todaysInqCount;
+	private int scheDemoCnt;
+	private int monthlyLeadCount;
+	private int monthScheDemo;
+	private int monthlyInqCount;
+	
+	
+	
 	
 	
 	public String getId() {
@@ -75,13 +82,41 @@ public class DashBoardSummary {
 	public void setTodaysInqCount(int todaysInqCount) {
 		this.todaysInqCount = todaysInqCount;
 	}
+	public int getScheDemoCnt() {
+		return scheDemoCnt;
+	}
+	public void setScheDemoCnt(int scheDemoCnt) {
+		this.scheDemoCnt = scheDemoCnt;
+	}
+	public int getMonthlyLeadCount() {
+		return monthlyLeadCount;
+	}
+	public void setMonthlyLeadCount(int monthlyLeadCount) {
+		this.monthlyLeadCount = monthlyLeadCount;
+	}
+	public int getMonthScheDemo() {
+		return monthScheDemo;
+	}
+	public void setMonthScheDemo(int monthScheDemo) {
+		this.monthScheDemo = monthScheDemo;
+	}
+	public int getMonthlyInqCount() {
+		return monthlyInqCount;
+	}
+	public void setMonthlyInqCount(int monthlyInqCount) {
+		this.monthlyInqCount = monthlyInqCount;
+	}
 	@Override
 	public String toString() {
 		return "DashBoardSummary [id=" + id + ", todayCount=" + todayCount + ", todayCompleted=" + todayCompleted
 				+ ", pendingCount=" + pendingCount + ", remainingCount=" + remainingCount + ", todayCompletedPts="
 				+ todayCompletedPts + ", pendingPts=" + pendingPts + ", todaysLeadCount=" + todaysLeadCount
-				+ ", todaysInqCount=" + todaysInqCount + "]";
+				+ ", todaysInqCount=" + todaysInqCount + ", scheDemoCnt=" + scheDemoCnt + ", monthlyLeadCount="
+				+ monthlyLeadCount + ", monthScheDemo=" + monthScheDemo + ", monthlyInqCount=" + monthlyInqCount + "]";
 	}
+	
+	
+	
 
 	
 	

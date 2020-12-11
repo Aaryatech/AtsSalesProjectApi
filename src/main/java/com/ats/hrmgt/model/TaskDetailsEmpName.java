@@ -64,6 +64,9 @@ public class TaskDetailsEmpName {
 	private int mCityId;
 	private String companyInfo;
 	private String channelName;
+	
+	private String companyContact;
+	
 	public int getTaskDoneBy() {
 		return taskDoneBy;
 	}
@@ -476,6 +479,14 @@ public class TaskDetailsEmpName {
 		this.channelName = channelName;
 	}
 
+	public String getCompanyContact() {
+		return companyContact;
+	}
+
+	public void setCompanyContact(String companyContact) {
+		this.companyContact = companyContact;
+	}
+
 	@Override
 	public String toString() {
 		return "TaskDetailsEmpName [taskId=" + taskId + ", mdAccTypeId=" + mdAccTypeId + ", priKey=" + priKey
@@ -488,12 +499,14 @@ public class TaskDetailsEmpName {
 				+ ", thisTaskStatus=" + thisTaskStatus + ", taskFinalStatus=" + taskFinalStatus + ", taskPriority="
 				+ taskPriority + ", taskPts=" + taskPts + ", taskDoneDate=" + taskDoneDate + ", taskDoneBy="
 				+ taskDoneBy + ", domainId=" + domainId + ", mStateId=" + mStateId + ", mCityId=" + mCityId
-				+ ", companyInfo=" + companyInfo + ", channelName=" + channelName + ", delStatus=" + delStatus
-				+ ", isActive=" + isActive + ", makerUserId=" + makerUserId + ", makerDatetime=" + makerDatetime
-				+ ", allocatedById=" + allocatedById + ", allocatedDatetime=" + allocatedDatetime + ", exInt1=" + exInt1
-				+ ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2=" + exVar2 + ", employeeName=" + employeeName
-				+ ", sts=" + sts + ", day=" + day + ", hour=" + hour + ", minutes=" + minutes + ", mdAccTypeText="
-				+ mdAccTypeText + ", completed=" + completed + "]";
+				+ ", companyInfo=" + companyInfo + ", channelName=" + channelName + ", companyContact=" + companyContact
+				+ ", delStatus=" + delStatus + ", isActive=" + isActive + ", makerUserId=" + makerUserId
+				+ ", makerDatetime=" + makerDatetime + ", allocatedById=" + allocatedById + ", allocatedDatetime="
+				+ allocatedDatetime + ", exInt1=" + exInt1 + ", exInt2=" + exInt2 + ", exVar1=" + exVar1 + ", exVar2="
+				+ exVar2 + ", employeeName=" + employeeName + ", sts=" + sts + ", day=" + day + ", hour=" + hour
+				+ ", minutes=" + minutes + ", mdAccTypeText=" + mdAccTypeText + ", completed=" + completed + "]";
 	}
+
+	
 
 }
