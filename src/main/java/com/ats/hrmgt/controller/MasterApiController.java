@@ -22,6 +22,7 @@ import com.ats.hrmgt.model.CustInfo;
 import com.ats.hrmgt.model.DashBoardSummary;
 import com.ats.hrmgt.model.Designation;
 import com.ats.hrmgt.model.Employee;
+import com.ats.hrmgt.model.Hardware;
 import com.ats.hrmgt.model.Info;
 import com.ats.hrmgt.model.InquiryDetail;
 import com.ats.hrmgt.model.InquiryHeader;
@@ -39,6 +40,7 @@ import com.ats.hrmgt.repository.CustInfoRepo;
 import com.ats.hrmgt.repository.DashBoardSummaryRepo;
 import com.ats.hrmgt.repository.DesignationRepository;
 import com.ats.hrmgt.repository.EmployeeRepository;
+import com.ats.hrmgt.repository.HardwareRepo;
 import com.ats.hrmgt.repository.InquiryDetailRepository;
 import com.ats.hrmgt.repository.InquiryHeaderRepository;
 import com.ats.hrmgt.repository.InquiryHeaderWithNamesRepository;
@@ -880,6 +882,74 @@ public class MasterApiController {
 			// TODO: handle exception
 			info.setError(false);
 			info.setMsg("Unable To Delete Designation Exception Occuered");
+			e.printStackTrace();
+		}
+
+		return info;
+	}
+	
+	/*-------------------------------------------------------------------------*/
+	@Autowired
+	HardwareRepo hardwareRepo;
+
+	@RequestMapping(value = "/getAllHardwares", method = RequestMethod.GET)
+	public @ResponseBody List<Hardware> getAllHardwares() {
+		List<Hardware> allHardwareList = new ArrayList<Hardware>();
+
+		try {
+			allHardwareList = hardwareRepo.findByDelStatusOrderByHardwareIdDesc(1);
+		} catch (Exception e) {			
+			System.err.println("Exception in /getAllHardwares : "+e.getMessage());	
+			e.printStackTrace();
+		}
+
+		return allHardwareList;
+	}
+	
+	@RequestMapping(value = "/saveEditHardware", method = RequestMethod.POST)
+	public @ResponseBody Hardware saveEditHardware(@RequestBody Hardware hardware) {
+		Hardware res = new Hardware();
+
+		try {
+			res = hardwareRepo.save(hardware);
+		} catch (Exception e) {			
+			System.err.println("Exception in /saveEditHardware : "+e.getMessage());	
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	
+	@RequestMapping(value = "/getHardwareById", method = RequestMethod.POST)
+	public @ResponseBody Hardware getHardwareById(@RequestParam int hardwareId) {
+		Hardware hardware = new Hardware();
+
+		try {
+			hardware = hardwareRepo.findByHardwareId(hardwareId);
+		} catch (Exception e) {		
+			System.err.println("Exception in /getHardwareById : "+e.getMessage());	
+			e.printStackTrace();
+		}
+
+		return hardware;
+	}
+	
+	@RequestMapping(value = "/deleteHardwareById", method = RequestMethod.POST)
+	public @ResponseBody Info deleteHardwareById(@RequestParam int hardwareId) {
+		Info info = new Info();
+		int res = 0;
+		try {
+			res = hardwareRepo.deleteHardware(hardwareId);
+			if(res>0) {
+				info.setError(false);
+				info.setMsg("Hardware deleted successfully");
+			}else {
+				info.setError(true);
+				info.setMsg("Failed to delete Hardware");
+			}
+				
+		} catch (Exception e) {			
+			System.err.println("Exception in /deleteHardwareById : "+e.getMessage());	
 			e.printStackTrace();
 		}
 
